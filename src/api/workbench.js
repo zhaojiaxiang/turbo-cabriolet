@@ -94,3 +94,11 @@ export async function getProjectMclDataStatistics(order_no) {
   })
   return resp
 }
+
+export async function getSingleLiaisonBySlipNo(slip_no) {
+  var resp = await request({
+    url: '/liaison/liaisons/?fslipno=' + slip_no
+  })
+  return resp
+}
+

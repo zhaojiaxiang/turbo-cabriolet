@@ -167,7 +167,7 @@ export default {
     },
     openSlipNoQa(fslipno, fstatus) {
       if (fstatus !== '待办') {
-        this.$router.push({ path: '/qa/', query: { slipno: fslipno }});
+        this.$router.push({ name: 'QA', query: { slip_no: fslipno }});
       } else {
         this.$message.error('请先开始该项目');
       }

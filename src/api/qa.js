@@ -41,3 +41,20 @@ export async function updateQaHead(id, data) {
   })
   return resp
 }
+
+export async function updateQaHeadSummary(id, data) {
+  var resp = await request({
+    url: '/qa/mcl_head_update_summary/' + id + '/',
+    method: 'put',
+    data
+  })
+  return resp
+}
+
+export async function getQaSlipNoCheckOutObject(slip_no) {
+  var resp = await request({
+    url: '/qa/qa_slip_no_checkout_object/?fslipno=' + slip_no,
+    method: 'get'
+  })
+  return resp
+}

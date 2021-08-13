@@ -9,7 +9,8 @@ import {
   getSingleLiaison,
   modifyLiaison,
   liaisonFileUpdate,
-  getProjectMclDataStatistics
+  getProjectMclDataStatistics,
+  getSingleLiaisonBySlipNo
 } from '@/api/workbench';
 import store from '..';
 
@@ -215,6 +216,15 @@ const actions = {
   getProjectMclDataStatistics({ commit }, order_no) {
     return new Promise((resolve, reject) => {
       getProjectMclDataStatistics(order_no).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getSingleLiaisonBySlipNo({ commit }, slip_no) {
+    return new Promise((resolve, reject) => {
+      getSingleLiaisonBySlipNo(slip_no).then(response => {
         resolve(response)
       }).catch(error => {
         reject(error)

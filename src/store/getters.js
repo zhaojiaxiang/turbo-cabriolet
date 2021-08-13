@@ -45,6 +45,8 @@ const getters = {
   qa_status_filters: state => state.projects.qa_status_filters,
   slip_slip_filters: state => state.projects.slip_slip_filters,
   slip_assigned_to_filters: state => state.projects.slip_assigned_to_filters,
-  span_list: state => state.projects.span_list
+  span_list: state => state.projects.span_list,
+  // qa
+  qa_list: state => state.qa.qa_list
 }
 export default getters

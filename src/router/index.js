@@ -121,12 +121,6 @@ export const constantRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/project/overview',
-  //   component: () => import('@/views/projects/components/ProjectOverview'),
-  //   name: 'ProjectOverview',
-  //   hidden: true
-  // },
   {
     path: '/project/overview',
     component: Layout,
@@ -137,6 +131,19 @@ export const constantRoutes = [
         component: () => import('@/views/projects/components/ProjectOverview'),
         name: 'ProjectOverview',
         meta: { title: 'ProjectOverview', icon: 'el-icon-document', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/qa',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/qa/index'),
+        name: 'QA',
+        meta: { title: 'QA', icon: '', noCache: true }
       }
     ]
   }
