@@ -67,6 +67,14 @@ export async function getQaDetailByQaHeadViaPagination(size, page, id) {
   return resp
 }
 
+export async function getQaDetailByQaHead(id) {
+  var resp = await request({
+    url: '/qa/mcl_detail/?qahf=' + id,
+    method: 'get'
+  })
+  return resp
+}
+
 export async function deleteQaDetail(id) {
   var resp = await request({
     url: '/qa/mcl_detail/' + id + '/',
@@ -256,3 +264,28 @@ export async function updateCodeReview(id, data) {
   })
   return resp;
 }
+
+export async function getPclQaClass1(id) {
+  var resp = await request({
+    url: '/qa/pcl_class1/' + id + '/',
+    method: 'get'
+  })
+  return resp;
+}
+
+export async function getPclQaClass2(qahf_id, class1) {
+  var resp = await request({
+    url: '/qa/pcl_class2/?class1=' + class1 + '&qahf_id=' + qahf_id,
+    method: 'get'
+  })
+  return resp;
+}
+
+export async function getPclDetailViaClass(qahf, class1, class2) {
+  var resp = await request({
+    url: '/qa/mcl_detail/?qahf=' + qahf + '&class1=' + class1 + '&class2=' + class2,
+    method: 'get'
+  })
+  return resp;
+}
+

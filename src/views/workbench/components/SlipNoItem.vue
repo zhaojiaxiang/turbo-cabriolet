@@ -1,6 +1,6 @@
 <template>
   <div class="div-style-1">
-    <el-table :data="slip_table" style="width: 100%" size="medium">
+    <el-table :data="slip_table" border size="medium">
       <el-table-column
         prop="fstatus"
         label="状态"
@@ -111,7 +111,7 @@
             v-show="
               true ? scope.row.fstatus == '待办' : scope.row.fstatus != '待办'
             "
-            style="margin-left:40px"
+            style="margin-left: 40px"
             type="primary"
             :underline="false"
             icon="el-icon-delete"

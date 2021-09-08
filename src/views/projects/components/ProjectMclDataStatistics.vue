@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogFormVisible" width="95%">
+  <el-dialog :visible.sync="dialogFormVisible" width="95%" :close-on-click-modal="false">
     <el-table
       ref="testplan"
       :data="testplan"

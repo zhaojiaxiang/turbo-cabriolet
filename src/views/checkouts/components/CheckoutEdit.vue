@@ -3,9 +3,7 @@
     <el-dialog
       :title="title"
       :visible.sync="dialogEdit"
-      width="40%"
-      :before-close="handleClose"
-      :show-close="false"
+      :close-on-click-modal="false"
     >
       <el-form
         ref="form"
@@ -61,15 +59,16 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogEdit = false">取 消</el-button>
-        <el-button v-if="newflg" @click="resetInput('form')">重 置</el-button>
         <el-button
           v-if="newflg"
+          primary
           @click="updateContinue('form')"
         >继续新建</el-button>
-        <el-button type="primary" @click="updateCheckout('form')">{{
+        <el-button type="primary" plain @click="updateCheckout('form')">{{
           btntext
         }}</el-button>
+        <el-button v-if="newflg" plain @click="resetInput('form')">重 置</el-button>
+        <el-button plain @click="dialogEdit = false">取 消</el-button>
       </div>
     </el-dialog>
   </div>
@@ -221,11 +220,6 @@ export default {
           }
         }
       });
-    },
-
-    handleClose() {
-      // 不关闭
-      return false;
     }
   }
 };

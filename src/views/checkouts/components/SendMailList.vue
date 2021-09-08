@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dialog title="邮件发送" :visible.sync="dialogEdit" width="40%">
+    <el-dialog title="邮件发送" :visible.sync="dialogEdit" :close-on-click-modal="false">
       <el-form label-position="right" label-width="80px">
         <el-form-item label="收件人">
           <el-select v-model="address" class="input-long" multiple clearable>
@@ -48,8 +48,8 @@
         />
       </el-table>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogEdit = false">取 消</el-button>
-        <el-button type="primary" @click="sendData">邮件发送</el-button>
+        <el-button plain type="primary" @click="sendData">邮件发送</el-button>
+        <el-button plain @click="dialogEdit = false">取 消</el-button>
       </div>
     </el-dialog>
   </div>

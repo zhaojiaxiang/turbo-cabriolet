@@ -51,8 +51,8 @@
           </el-col>
           <el-col :xs="24" :sm="24" :lg="4">
             <el-form-item>
-              <el-button type="primary" @click="onQuery">查询</el-button>
-              <el-button type="primary" @click="onQueryAll">查询全部</el-button>
+              <el-button type="primary" plain @click="onQuery">查询</el-button>
+              <el-button type="primary" plain @click="onQueryAll">查询全部</el-button>
             </el-form-item></el-col>
         </el-row>
       </el-form>
@@ -62,16 +62,17 @@
         <div>
           <el-button
             type="danger"
+            plain
             @click="batchDeleteCheckoutData"
           >删除选中项</el-button>
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="12">
-        <div style="text-align:right;margin-right:10px">
+        <div style="text-align:right">
           <el-button-group>
-            <el-button @click="onWorkSpace">工作台</el-button>
-            <el-button @click="openDialog('new', '')">新建</el-button>
-            <el-button @click="openSendMail">邮件发送</el-button>
+            <el-button plain @click="onWorkSpace">工作台</el-button>
+            <el-button plain @click="openDialog('new', '')">新建</el-button>
+            <el-button plain @click="openSendMail">邮件发送</el-button>
           </el-button-group>
         </div>
       </el-col>
@@ -79,21 +80,21 @@
     <el-table
       ref="updateTable"
       :data="checkout_table"
-      style="width:100%;margin-top:20px"
+      style="width:100%;margin-top:10px"
       size="medium"
       border
     >
       <el-table-column type="selection" width="45" :selectable="selecttable" />
-      <el-table-column prop="fsystem" label="系统" min-width="50" />
+      <el-table-column prop="fsystem" sortable label="系统" min-width="60" />
       <el-table-column prop="fcomment" label="程序" min-width="80" />
-      <el-table-column prop="fslipno" label="联络票号" min-width="130" />
+      <el-table-column prop="fslipno" sortable label="联络票号" min-width="130" />
       <el-table-column
         prop="fchkoutobj"
         label="文件名称"
         min-width="200"
         show-overflow-tooltip
       />
-      <el-table-column prop="fapplicant" label="申请者" min-width="60" />
+      <el-table-column prop="fapplicant" sortable label="申请者" min-width="80" />
       <el-table-column prop="fregisterdte" label="申请日期" min-width="80" />
       <el-table-column
         prop="fchkoutfile"
@@ -109,7 +110,6 @@
         <template slot-scope="scope">
           <el-tag
             v-if="!isCanModify(scope.row)"
-            class="tag-style"
             :type="handleTag(scope.row)"
             witch
           >{{ scope.row.fchkstatus }}</el-tag>
@@ -118,7 +118,7 @@
             trigger="click"
             @command="updateStatus"
           >
-            <el-tag class="tag-style" :type="handleTag(scope.row)">{{
+            <el-tag :type="handleTag(scope.row)">{{
               scope.row.fchkstatus
             }}</el-tag>
             <el-dropdown-menu slot="dropdown">
@@ -432,29 +432,8 @@ export default {
 };
 </script>
 
-<style>
-.el-table--medium td,
-.el-table--medium th {
-  padding: 5px 0px;
-}
-
-.el-table__row {
-  height: 20px;
-}
-
-.el-table__header {
-  padding: 0;
-}
-
-.body-style {
-  padding: 8px 10px;
-}
-
+<style scoped>
 .div-style {
   margin: 0px;
-}
-
-.tag-style {
-  width: 100px;
 }
 </style>

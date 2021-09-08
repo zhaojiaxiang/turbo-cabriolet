@@ -5,6 +5,7 @@
         <div style="text-align:right;">
           <el-button
             v-show="isCanAddPCL"
+            plain
             @click="openPCLNew"
           >新建结合测试</el-button>
         </div>
@@ -35,7 +36,15 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="fobjectid" label="测试对象" min-width="200" />
+      <el-table-column label="测试对象" min-width="200">
+        <template slot-scope="scope">
+          <el-link
+            type="primary"
+            :underline="false"
+            @click="openQaTestList(scope.row.id)"
+          >{{ scope.row.fobjectid }}</el-link>
+        </template>
+      </el-table-column>
 
       <el-table-column prop="fcreateusr" label="创建者" width="100" />
 
@@ -60,17 +69,6 @@
             icon="el-icon-delete"
             @click="deleteQaHead(scope.row.id, scope.row.fobjectid)"
           />
-        </template>
-      </el-table-column>
-      <el-table-column label="测试" width="80">
-        <template slot-scope="scope">
-          <el-link
-            style="margin-left:10px"
-            type="primary"
-            size="medium"
-            :underline="false"
-            @click="openQaTestList(scope.row.id)"
-          >测试</el-link>
         </template>
       </el-table-column>
     </el-table>
@@ -115,7 +113,7 @@ export default {
   methods: {
     openQaTestList(id) {
       this.$router.push({
-        name: 'ProjectPclClass1',
+        name: 'ProjectPclQaClass1',
         query: { qahf_id: id }
       });
     },

@@ -3,6 +3,7 @@
     title="测试对象修改明细"
     lock-scroll
     :visible.sync="dialogFormVisible"
+    :close-on-click-modal="false"
   >
     <el-form ref="form" label-width="20%" :rules="rules" :model="form">
       <el-form-item prop="fttlcodelines" label="影响总行数:" required>
@@ -60,6 +61,7 @@ import {
   updateQaHeadModifyDetail,
   getQaHeadModifyDetail
 } from '@/api/qa';
+import store from '@/store';
 export default {
   data() {
     return {
@@ -75,19 +77,19 @@ export default {
       },
       rules: {
         fttlcodelines: [
-          { required: true, message: '请输入影响总行数', trigger: 'change' }
+          { required: true, message: '请输入影响总行数', trigger: 'blur' }
         ],
         fmodifiedlines: [
-          { required: true, message: '请输入修改行数', trigger: 'change' }
+          { required: true, message: '请输入修改行数', trigger: 'blur' }
         ],
         fcomplexity: [
-          { required: true, message: '请选择复杂度', trigger: 'change' }
+          { required: true, message: '请选择复杂度', trigger: 'blur' }
         ],
         fselflevel: [
           {
             required: true,
             message: '请选择自我评价难易等级',
-            trigger: 'change'
+            trigger: 'blur'
           }
         ]
       }
@@ -110,10 +112,7 @@ export default {
     async handleDialog(id) {
       this.testplan = [];
       this.dialogFormVisible = !this.dialogFormVisible;
-      var resp = await getQaHeadModifyDetail(id).catch(() => {
-        this.$message.error('测试对象修改明细获取异常');
-      });
-
+      var resp = await getQaHeadModifyDetail(id)
       this.form = resp.data;
       this.qahead_status = resp.data.fstatus;
     },
@@ -123,13 +122,11 @@ export default {
           var resp = await updateQaHeadModifyDetail(
             this.form.id,
             this.form
-          ).catch(() => {
-            this.$message.error('测试对象修改明细更新异常');
-          });
-          if (resp.status === 200) {
-            this.$emit('refreshTargetActual');
+          )
+          if (resp.result === 'OK') {
             this.dialogFormVisible = false;
             this.resetForm('form');
+            await store.dispatch('qa/refreshMclTargetActual', this.form.id)
             this.$message({
               message: '修改成功！',
               type: 'success'

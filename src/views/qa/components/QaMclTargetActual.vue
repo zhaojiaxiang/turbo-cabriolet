@@ -3,7 +3,6 @@
     <el-table
       :data="qa_mcl_target_actual"
       border
-      style="width: 100%"
       size="medium"
       :cell-class-name="tableCellClassName"
       :highlight-current-row="true"

@@ -53,6 +53,10 @@ const getters = {
   qa_mcl_page_size: state => state.qa.qa_mcl_page_size,
   qa_mcl_page_count: state => state.qa.qa_mcl_page_count,
   qa_mcl_count: state => state.qa.qa_mcl_count,
-  qa_mcl_target_actual: state => state.qa.qa_mcl_target_actual
+  qa_mcl_target_actual: state => state.qa.qa_mcl_target_actual,
+  qa_pcl_target_actual: state => state.qa.qa_pcl_target_actual,
+  qa_pcl_class1_list: state => state.qa.qa_pcl_class1_list,
+  qa_pcl_class2_list: state => state.qa.qa_pcl_class2_list,
+  qa_pcl_list: state => state.qa.qa_pcl_list
 }
 export default getters

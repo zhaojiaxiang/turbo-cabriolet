@@ -1,42 +1,49 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="4">
-        <el-button-group>
-          <el-button
-            v-loading.fullscreen.lock="fullscreenLoading"
-            type="danger"
-            :disabled="isCanBatchDelete()"
-            @click="batchDeleteQaDetail()"
-          >删除选中项</el-button>
-        </el-button-group>
-      </el-col>
-      <el-col :span="12">
+    <el-row class="row-bottom">
+      <el-col :xs="24" :sm="24" :lg="24">
         <QaMclTargetActual />
       </el-col>
-      <el-col :span="8">
-        <div style="text-align: right; margin-right: 40px">
+    </el-row>
+    <el-row class="row-bottom">
+      <el-col :xs="24" :sm="24" :lg="12">
+        <el-button
+          v-loading.fullscreen.lock="fullscreenLoading"
+          type="danger"
+          plain
+          :disabled="isCanBatchDelete()"
+          @click="batchDeleteQaDetail()"
+        >删除选中项</el-button>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="12">
+        <div style="text-align: right;">
           <el-button-group>
             <el-button
               v-show="isCanDefaultOK()"
+              plain
               @click="defaultOK()"
             >Default OK</el-button>
-            <el-button @click="detailModify()">修改明细</el-button>
+            <el-button plain @click="detailModify()">修改明细</el-button>
             <el-button
               v-show="isCanAdd()"
+              plain
               @click="singleAdd()"
             >逐条添加</el-button>
             <el-button
               v-show="isCanAdd()"
+              plain
               @click="batchAdd()"
             >批量添加</el-button>
             <el-button
               v-show="isCanSubmit()"
               type="primary"
+              plain
               @click="resultSubmit()"
             >提交结果</el-button>
             <el-button
-              v-show="isCanRoback()"
+              v-show="isCanRollback()"
+              plain
+              type="warning"
               @click="resultRollback()"
             >结果撤回</el-button>
           </el-button-group>
@@ -53,29 +60,31 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="40" />
-      <el-table-column label="序号" type="index" width="50" />
+      <el-table-column label="序号" type="index" width="60" />
       <el-table-column
         prop="fclass1"
         label="分类"
-        width="100"
+        min-width="100"
+        sortable
         show-overflow-tooltip
       />
-      <el-table-column prop="fregression" label="回归？" width="70">
+      <el-table-column prop="fregression" sortable label="回归？" min-width="90">
         <template slot-scope="scope">
           <el-tag :type="regressionTag" disable-transitions>{{
             scope.row.fregression
           }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="fapproval" label="状态" width="70" />
-      <el-table-column prop="fcontent" label="测试用例" min-width="800" />
-      <el-table-column prop="ftestdte" label="测试日" width="100" />
-      <el-table-column prop="ftestusr" label="测试者" width="100" />
+      <el-table-column prop="fapproval" sortable label="状态" width="80" />
+      <el-table-column prop="fcontent" sortable label="测试用例" min-width="700" />
+      <el-table-column prop="ftestdte" label="测试日" min-width="100" />
+      <el-table-column prop="ftestusr" label="测试者" min-width="90" />
       <el-table-column
         v-if="qahead.fstatus !== '1'"
         prop="fresult"
         label="结果"
         width="100"
+        sortable
         :filters="[
           { text: 'NULL', value: null },
           { text: 'OK', value: 'OK' },
@@ -149,7 +158,7 @@
         <el-pagination
           background
           :current-page="qa_mcl_current_page"
-          :page-sizes="[20, 30, 50, 100]"
+          :page-sizes="[15, 20, 30, 50, 100]"
           :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
           :total="qa_mcl_count"
@@ -191,7 +200,6 @@ export default {
       fullscreenLoading: false,
       regressionTag: '',
       approvalTag: '',
-      qadetails: [],
       multipleSelection: []
     };
   },
@@ -264,7 +272,7 @@ export default {
       }
     },
 
-    isCanRoback() {
+    isCanRollback() {
       if (this.qahead.fstatus === '3') {
         return true;
       }
@@ -272,8 +280,12 @@ export default {
     },
 
     isCanBatchDelete() {
-      if ((this.qahead.fstatus === '1') & (this.qadetails.length > 0)) {
-        return false;
+      if ((this.qahead.fstatus === '1') & (this.qa_mcl_list.length > 0)) {
+        var seleted = this.$refs.multipleTable.selection
+        if (seleted.length > 0) {
+          return false;
+        }
+        return true;
       }
       return true;
     },
@@ -287,11 +299,11 @@ export default {
         return false;
       }
 
-      for (var i in this.qadetails) {
-        if (!this.qadetails[i].fresult) {
+      for (var i in this.qa_mcl_list) {
+        if (!this.qa_mcl_list[i].fresult) {
           return false;
         }
-        if (this.qadetails[i].fresult === 'NG') {
+        if (this.qa_mcl_list[i].fresult === 'NG') {
           return false;
         }
       }
@@ -499,4 +511,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.row-bottom {
+  margin-bottom:8px;
+}
+</style>

@@ -95,9 +95,8 @@
   size: 4px;
 }
 
-.el-table--medium td,
-.el-table--medium th {
-  padding: 5px 0px;
+.el-table--medium .el-table__cell  {
+  padding: 4px 0px;
 }
 .el-table__row {
   height: 20px;

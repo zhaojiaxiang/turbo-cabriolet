@@ -76,6 +76,9 @@ export default {
         } else if (first_content_type === 'T') {
           this.content_text = '';
         }
+      } else if (this.operate_type === 'display') {
+        this.isshow = false;
+        this.isdisable = false;
       }
     } else {
       if (this.operate_type === 'approval') {
@@ -90,7 +93,7 @@ export default {
     async submitContentText(val) {
       this.qadf.fcontent_text = val;
       var resp;
-      if (this.operate_type === 'test') {
+      if (this.operate_type === 'test' || this.operate_type === 'display') {
         resp = await updateQaDetailContentText(this.qadf.id, this.qadf)
       } else if (this.operate_type === 'approval') {
         resp = await approvalQaDetailContentText(this.qadf.id, this.qadf)
@@ -106,6 +109,7 @@ export default {
       var resp = await getQadetailProofContentText(id)
       if (resp.result === 'OK') {
         this.proofs = resp.data;
+        console.log(this.proofs);
       }
     }
   }

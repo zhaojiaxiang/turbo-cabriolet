@@ -36,7 +36,7 @@ import LinkPlugin from '@ckeditor/ckeditor5-link/src/link';
 import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 
-// import Image from '@ckeditor/ckeditor5-image/src/image';
+import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 // import ImageCaption from "@ckeditor/ckeditor5-image/src/imagecaption";

@@ -135,6 +135,58 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/project/qa',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/projects/components/ProjectMclQaTestList'),
+        name: 'ProjectMclQaTestList',
+        meta: { title: 'Project QA', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/project/pcl/class1',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/projects/components/ProjectPclQaClass1'),
+        name: 'ProjectPclQaClass1',
+        meta: { title: 'Project PCL Class1', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/project/pcl/class2',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/projects/components/ProjectPclQaClass2'),
+        name: 'ProjectPclQaClass2',
+        meta: { title: 'Project PCL Class2', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/project/pcl/list',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/projects/components/ProjectPclQaList'),
+        name: 'ProjectPclQaList',
+        meta: { title: 'Project PCL List', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
     path: '/qa',
     component: Layout,
     hidden: true,

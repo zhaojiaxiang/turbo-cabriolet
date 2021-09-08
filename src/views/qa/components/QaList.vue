@@ -6,9 +6,9 @@
       height="420"
       size="medium"
     >
-      <el-table-column fixed prop="fobjectid" label="测试对象" min-width="400" />
-      <el-table-column prop="fstatus" label="状态" min-width="130">
-        <template slot-scope="scope">
+      <el-table-column prop="fobjectid" sortable label="测试对象" min-width="400" />
+      <el-table-column prop="fstatus" sortable label="状态" min-width="130">
+        <template slot-scope="scope" sortable>
           <el-tag :type="scope.row.tagtype" disable-transitions>{{
             scope.row.fstatus
           }}</el-tag>
@@ -16,7 +16,7 @@
       </el-table-column>
       <el-table-column prop="ftesttyp" label="测试类型" min-width="120" />
 
-      <el-table-column prop="ftestdte" label="测试日期" min-width="150" />
+      <el-table-column prop="ftestdte" sortable label="测试日期" min-width="150" />
       <el-table-column label="操作" min-width="250">
         <template slot-scope="scope">
           <el-link

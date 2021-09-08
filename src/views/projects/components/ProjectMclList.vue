@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-row>
+    <el-row style="margin-top:10px">
       <el-col :span="24">
         <div style="text-align: right">
-          <el-button @click="openTestStatistics">测试数据统计</el-button>
+          <el-button plain @click="openTestStatistics">测试数据统计</el-button>
         </div>
       </el-col>
     </el-row>
@@ -137,12 +137,12 @@
           <el-link
             :underline="false"
             :type="linkStyle(scope.row.code_id)"
-            @click="openCodeReview(scope.row.slip_slip, scope.row.qa_object)"
+            @click="openCodeReview(scope.row.slip_slip, scope.row.qa_object, scope.row.qa_id)"
           >代码Review</el-link>
         </template>
       </el-table-column>
     </el-table>
-    <!-- <QaObjectSummary
+    <QaObjectSummary
       ref="QaObjectSummary"
       :isdisable="isdisable"
     />
@@ -152,30 +152,28 @@
       :isdisable="isdisable"
     />
     <QaCodeReview ref="QaCodeReview" :isdisable="isdisable" />
-    <TestDataStatistics ref="TestDataStatistics" /> -->
     <ProjectMclDataStatistics ref="ProjectMclDataStatistics" />
   </div>
 </template>
 
 <script>
-// import QaObjectSummary from './../../Home/components/QaObjectSummary';
-// import QaDesignReview from './../../Home/components/QaDesignReview';
-// import QaCodeReview from './../../Home/components/QaCodeReview';
+import QaObjectSummary from '@/views/qa/components/QaObjectSummary';
+import QaDesignReview from '@/views/qa/components/QaDesignReview';
+import QaCodeReview from '@/views/qa/components/QaCodeReview';
 import ProjectMclDataStatistics from './ProjectMclDataStatistics';
 import store from '@/store';
 import { mapGetters } from 'vuex';
 export default {
   components: {
-    ProjectMclDataStatistics
-    // QaObjectSummary,
-    // QaDesignReview,
-    // QaCodeReview,
-    // TestDataStatistics
+    ProjectMclDataStatistics,
+    QaObjectSummary,
+    QaDesignReview,
+    QaCodeReview
   },
   data() {
     return {
       order_no: '',
-      isdisable: false
+      isdisable: true
     };
   },
   computed: {
@@ -254,13 +252,13 @@ export default {
       this.$refs.QaDesignReview.handleDialog(slipno);
     },
 
-    openCodeReview(slipno, objectid) {
-      this.$refs.QaCodeReview.handleDialog(slipno, objectid);
+    openCodeReview(slipno, objectid, id) {
+      this.$refs.QaCodeReview.handleDialog(slipno, objectid, id);
     },
 
     openQaList(qahf_id) {
       this.$router.push({
-        name: 'ProjectOverviewQA',
+        name: 'ProjectMclQaTestList',
         query: { qahf_id: qahf_id }
       });
     },

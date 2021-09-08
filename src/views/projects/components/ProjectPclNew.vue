@@ -1,11 +1,12 @@
 <template>
-  <el-dialog title="手动添加结合测试" :visible.sync="dialogFormVisible">
+  <el-dialog title="手动添加结合测试" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
     <el-form ref="form" :rules="rules" :model="form">
       <el-form-item>
         <el-col :span="12">
           <el-form-item prop="fslipno">
             <el-input
               v-model="form.fslipno"
+              :disabled="true"
               class="width-sytle"
               placeholder="订单号"
             />
@@ -24,7 +25,7 @@
       <el-form-item required>
         <el-col :span="12">
           <el-form-item prop="fsystemcd" size="medium">
-            <el-select v-model="form.fsystemcd" placeholder="请选择系统名称">
+            <el-select v-model="form.fsystemcd" :disabled="true" placeholder="请选择系统名称">
               <el-option
                 v-for="(item, i) in systems"
                 :key="i"
@@ -36,7 +37,7 @@
         </el-col>
         <el-col :span="12">
           <el-form-item prop="fprojectcd">
-            <el-select v-model="form.fprojectcd" placeholder="请选择项目名称">
+            <el-select v-model="form.fprojectcd" :disabled="true" placeholder="请选择项目名称">
               <el-option
                 v-for="(item, i) in projects"
                 :key="i"
@@ -90,7 +91,7 @@ export default {
         if (resp.result === 'OK') {
           this.form.fsystemcd = resp.data.fsystemcd;
           this.form.fprojectcd = resp.data.fprojectcd;
-          this.form.fobjectid = resp.data.fobjectid;
+          this.form.fobjectid = '';
           this.form.fslipno = resp.data.fslipno;
         }
       }

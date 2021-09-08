@@ -15,7 +15,10 @@ import {
   newQaDetail,
   batchNewQaDetail,
   updateQaDetail,
-  fileUpload
+  fileUpload,
+  getPclQaClass1,
+  getPclQaClass2,
+  getPclDetailViaClass
 } from '@/api/qa';
 import store from '..';
 
@@ -23,6 +26,10 @@ const state = {
   qa_list: [],
   qa_mcl_list: [],
   qa_mcl_target_actual: [],
+  qa_pcl_target_actual: [],
+  qa_pcl_class1_list: [],
+  qa_pcl_class2_list: [],
+  qa_pcl_list: [],
   qa_mcl_current_page: 1,
   qa_mcl_page_size: 20,
   qa_mcl_page_count: 1,
@@ -83,6 +90,28 @@ const mutations = {
   SET_MCL_TARGET_ACTUAL(state, data) {
     state.qa_mcl_target_actual = []
     state.qa_mcl_target_actual.push(data)
+  },
+  SET_PCL_TARGET_ACTUAL(state, data) {
+    state.qa_pcl_target_actual = []
+    state.qa_pcl_target_actual.push(data)
+  },
+  SET_PCL_CLASS1_LIST(state, data) {
+    state.qa_pcl_class1_list = data
+  },
+  SET_PCL_CLASS2_LIST(state, data) {
+    state.qa_pcl_class2_list = data
+  },
+  SET_PCL_LIST(state, data) {
+    for (var i in data) {
+      if (data[i].fapproval === 'Y') {
+        data[i].fapproval = '已审核';
+        this.approvalTag = '';
+      } else {
+        data[i].fapproval = '未审核';
+        this.approvalTag = 'info';
+      }
+    }
+    state.qa_pcl_list = data
   }
 };
 
@@ -279,10 +308,56 @@ const actions = {
       })
     })
   },
+  refreshPclTargetActual({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      getMclTargetActual(id).then(response => {
+        const { data } = response
+        commit('SET_PCL_TARGET_ACTUAL', data)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   fileUpload({ commit }, data) {
     return new Promise((resolve, reject) => {
       fileUpload(data).then(response => {
         resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  refreshPclQaClass1({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      getPclQaClass1(id).then(response => {
+        const { data } = response
+        commit('SET_PCL_CLASS1_LIST', data.class1)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  refreshPclQaClass2({ commit }, args) {
+    const { id, class1 } = args
+    return new Promise((resolve, reject) => {
+      getPclQaClass2(id, class1).then(response => {
+        const { data } = response
+        commit('SET_PCL_CLASS2_LIST', data[0].class2)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  refreshPclListViaClass({ commit }, args) {
+    const { id, class1, class2 } = args
+    return new Promise((resolve, reject) => {
+      getPclDetailViaClass(id, class1, class2).then(response => {
+        const { data } = response
+        commit('SET_PCL_LIST', data)
+        resolve(resolve)
       }).catch(error => {
         reject(error)
       })
