@@ -5,7 +5,6 @@ const getters = {
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
   permission_routes: state => state.permission.routes,
-  errorLogs: state => state.errorLog.logs,
   // common
   systems: state => state.common.systems,
   projects: state => state.common.projects,
