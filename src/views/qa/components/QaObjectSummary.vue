@@ -70,8 +70,6 @@ export default {
               message: this.form.fobjectid + '修改概要更新成功！',
               type: 'success'
             });
-          } else {
-            this.$message.error(resp.data.message);
           }
         }
       });

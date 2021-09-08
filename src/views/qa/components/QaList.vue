@@ -6,18 +6,18 @@
       height="420"
       size="medium"
     >
-      <el-table-column fixed prop="fobjectid" label="测试对象" width="400" />
-      <el-table-column prop="fstatus" label="状态" width="130">
+      <el-table-column fixed prop="fobjectid" label="测试对象" min-width="400" />
+      <el-table-column prop="fstatus" label="状态" min-width="130">
         <template slot-scope="scope">
           <el-tag :type="scope.row.tagtype" disable-transitions>{{
             scope.row.fstatus
           }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="ftesttyp" label="测试类型" width="120" />
+      <el-table-column prop="ftesttyp" label="测试类型" min-width="120" />
 
-      <el-table-column prop="ftestdte" label="测试日期" width="150" />
-      <el-table-column fixed="right" label="操作" width="250">
+      <el-table-column prop="ftestdte" label="测试日期" min-width="150" />
+      <el-table-column label="操作" min-width="250">
         <template slot-scope="scope">
           <el-link
             type="primary"
@@ -30,7 +30,7 @@
             type="primary"
             size="medium"
             :underline="false"
-            @click="addCodeReview(scope.row.fslipno, scope.row.fobjectid)"
+            @click="addCodeReview(scope.row.fslipno, scope.row.fobjectid, scope.row.id)"
           >代码Review</el-link>
           <el-link
             style="margin-left: 10px"
@@ -51,19 +51,24 @@
       </el-table-column>
     </el-table>
     <QaObjectSummary ref="QaObjectSummary" />
+    <QaCodeReview ref="QaCodeReview" :isdisable="isdisable" />
   </div>
 </template>
 
 <script>
-import QaObjectSummary from '@/views/common/QaObjectSummary';
+import QaObjectSummary from '@/views/qa/components/QaObjectSummary';
+
+import QaCodeReview from '@/views/qa/components/QaCodeReview';
 import store from '@/store';
 import { mapGetters } from 'vuex';
 export default {
   components: {
-    QaObjectSummary
+    QaObjectSummary,
+    QaCodeReview
   },
   data() {
     return {
+      isdisable: false
     };
   },
   computed: {
@@ -81,17 +86,13 @@ export default {
       this.$refs.QaObjectSummary.handleDialog(id);
     },
 
-    addDesignReview(slipno) {
-      this.$refs.QaDesignReview.handleDialog(slipno);
-    },
-
-    addCodeReview(slipno, objectid) {
-      this.$refs.QaCodeReview.handleDialog(slipno, objectid);
+    addCodeReview(slipno, objectid, id) {
+      this.$refs.QaCodeReview.handleDialog(slipno, objectid, id);
     },
 
     openQaTestList(id, obj) {
       this.$router.push({
-        name: 'QaTestList',
+        name: 'QAMclTestList',
         query: { qahf_id: id, object: obj }
       });
     },

@@ -1,12 +1,17 @@
 <template>
-  <div class="dashboard-editor-container">
+  <div class="workbench-editor-container">
     <TaskGroupBar />
 
     <el-row>
       <ProjectItem />
     </el-row>
     <el-row style="margin-bottom:3px">
-      <el-col :span="24">
+      <el-col :span="12">
+        <div style="text-align:left; " class="vertical">
+          <h3 style="margin:0 auto;">我的任务</h3>
+        </div>
+      </el-col>
+      <el-col :span="12">
         <div style="text-align:right;">
           <el-button plain @click="openSlipNoNew">新建联络票</el-button>
         </div>
@@ -58,9 +63,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard-editor-container {
-  padding: 16px 32px 16px 32px;
-  background-color: rgb(240, 242, 245);
+.workbench-editor-container {
+  padding: 4px 32px 4px 32px;
   position: relative;
 }
 
@@ -68,5 +72,10 @@ export default {
   .chart-wrapper {
     padding: 8px;
   }
+}
+.vertical {
+  display: table-cell;
+  height: 36px;
+  vertical-align: middle;
 }
 </style>

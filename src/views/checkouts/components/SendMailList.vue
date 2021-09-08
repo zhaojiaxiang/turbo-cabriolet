@@ -146,9 +146,7 @@ export default {
       };
       var resp = await sendMail(send)
 
-      if (Object.prototype.hasOwnProperty.call(resp.data, 'message')) {
-        this.$message.error(resp.data.message);
-      } else {
+      if (resp.result === 'OK') {
         this.dialogEdit = false;
         this.$message({
           message: '邮件发送成功',

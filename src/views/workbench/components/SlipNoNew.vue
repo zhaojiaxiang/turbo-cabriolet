@@ -27,10 +27,9 @@
               v-show="is_sirno"
               v-model="sync_sirno"
               placeholder="请输入Sir No"
-            />
-          </el-col>
-          <el-col :span="4">
-            <el-button v-show="is_sirno" @click="syncSirNo">同步</el-button>
+            >
+              <el-button slot="suffix" style="padding-right:10px" type="text" @click="syncSirNo">同步</el-button>
+            </el-input>
           </el-col>
         </el-form-item>
 
@@ -49,11 +48,7 @@
                   :value="item.fsystemcd"
                 />
               </el-select>
-              <el-button
-                icon="el-icon-edit"
-                style="width:20%;"
-                @click="systemCodeMaster"
-              />
+              <el-button icon="el-icon-edit-outline" circle @click="systemCodeMaster" />
             </el-form-item>
           </el-col>
           <el-col :span="14">
@@ -75,11 +70,7 @@
                   :value="item.fprojectcd"
                 />
               </el-select>
-              <el-button
-                icon="el-icon-edit"
-                style="width:20%;"
-                @click="projectCodeMaster"
-              />
+              <el-button icon="el-icon-edit-outline" circle @click="projectCodeMaster" />
             </el-form-item>
           </el-col>
         </el-form-item>
@@ -261,6 +252,8 @@
         </el-form-item>
       </el-form>
     </el-drawer>
+    <SystemMaster ref="systemMaster" />
+    <ProjectMaster ref="projectMaster" />
   </div>
 </template>
 
@@ -268,7 +261,13 @@
 import store from '@/store';
 import { mapGetters } from 'vuex';
 import { formatDate } from '@/utils/common';
+import SystemMaster from '@/views/master/SystemMaster';
+import ProjectMaster from '@/views/master/ProjectMaster';
 export default {
+  components: {
+    SystemMaster,
+    ProjectMaster
+  },
   data() {
     return {
       isCanModify: false,
@@ -420,11 +419,11 @@ export default {
     },
 
     projectCodeMaster() {
-      this.$router.push({ name: 'ProjectMaster' });
+      this.$refs.projectMaster.handleDialog()
     },
 
     systemCodeMaster() {
-      this.$router.push({ name: 'SystemMaster' });
+      this.$refs.systemMaster.handleDialog()
     },
 
     async syncSirNo() {

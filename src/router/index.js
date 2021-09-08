@@ -146,6 +146,32 @@ export const constantRoutes = [
         meta: { title: 'QA', icon: '', noCache: true }
       }
     ]
+  },
+  {
+    path: '/qa/testlist',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/qa/components/QaMclTestIndex'),
+        name: 'QAMclTestList',
+        meta: { title: 'QA MCL List', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/qa/content_text',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/common/QaContentText'),
+        name: 'QaContentText',
+        meta: { title: 'QA Proof', icon: '', noCache: true }
+      }
+    ]
   }
 ]
 

@@ -51,12 +51,17 @@
         </el-col>
       </el-row>
     </el-form>
+    <QaDesignReview ref="QaDesignReview" :isdisable="isdisable" />
   </div>
 </template>
 
 <script>
+import QaDesignReview from '@/views/qa/components/QaDesignReview';
 import store from '@/store';
 export default {
+  components: {
+    QaDesignReview
+  },
   data() {
     return {
       isdisable: false,
@@ -99,6 +104,9 @@ export default {
     }
   },
   methods: {
+    addDesignReview(slipno) {
+      this.$refs.QaDesignReview.handleDialog(slipno);
+    },
     onSubmit(formName) {
       this.$refs[formName].validate(async valid => {
         if (valid) {

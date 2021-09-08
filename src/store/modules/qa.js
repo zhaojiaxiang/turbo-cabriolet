@@ -1,10 +1,47 @@
-import { getQaHeadBySlipNo, deleteQaHead, getQaHead, newQaHead, updateQaHead, updateQaHeadSummary, getQaSlipNoCheckOutObject } from '@/api/qa';
+import {
+  getQaHeadBySlipNo,
+  deleteQaHead,
+  getQaHead,
+  newQaHead,
+  updateQaHead,
+  updateQaHeadSummary,
+  getQaSlipNoCheckOutObject,
+  getQaDetailByQaHeadViaPagination,
+  deleteQaDetail,
+  updateQaDetailResult,
+  putDefaultOK,
+  codeReviewInspection,
+  getMclTargetActual,
+  newQaDetail,
+  batchNewQaDetail,
+  updateQaDetail,
+  fileUpload
+} from '@/api/qa';
+import store from '..';
 
 const state = {
-  qa_list: []
-}
+  qa_list: [],
+  qa_mcl_list: [],
+  qa_mcl_target_actual: [],
+  qa_mcl_current_page: 1,
+  qa_mcl_page_size: 20,
+  qa_mcl_page_count: 1,
+  qa_mcl_count: 0
+};
 
 const mutations = {
+  SET_PAGE_SIZE(state, page_size) {
+    state.qa_mcl_page_size = page_size
+  },
+  SET_PAGE_COUNT(state, page_count) {
+    state.qa_mcl_page_count = page_count
+  },
+  SET_CURRENT_PAGE(state, current_page) {
+    state.qa_mcl_current_page = current_page
+  },
+  SET_COUNT(state, count) {
+    state.qa_mcl_count = count
+  },
   SET_QA_LIST(state, data) {
     for (var i in data) {
       var fstatus = data[i].fstatus;
@@ -22,91 +59,240 @@ const mutations = {
         data[i].tagtype = 'success';
       }
     }
-    state.qa_list = data
+    state.qa_list = data;
+  },
+  SET_QA_MCL_LIST(state, data) {
+    for (var i in data) {
+      if (data[i].fregression === 'Y') {
+        data[i].fregression = '是';
+        this.regressionTag = '';
+      } else {
+        data[i].fregression = '否';
+        this.regressionTag = 'info';
+      }
+      if (data[i].fapproval === 'Y') {
+        data[i].fapproval = '已审核';
+        this.approvalTag = '';
+      } else {
+        data[i].fapproval = '未审核';
+        this.approvalTag = 'info';
+      }
+    }
+    state.qa_mcl_list = data;
+  },
+  SET_MCL_TARGET_ACTUAL(state, data) {
+    state.qa_mcl_target_actual = []
+    state.qa_mcl_target_actual.push(data)
   }
 };
 
 const actions = {
   getQaHead({ commit }, id) {
     return new Promise((resolve, reject) => {
-      getQaHead(id).then(response => {
-        resolve(response)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      getQaHead(id)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   },
   newQaHead({ commit }, data) {
     return new Promise((resolve, reject) => {
-      newQaHead(data).then(response => {
-        resolve(response)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      newQaHead(data)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   },
   getQaListBySlipNo({ commit }, slip_no) {
     return new Promise((resolve, reject) => {
-      getQaHeadBySlipNo(slip_no).then(response => {
-        const { data } = response
-        commit('SET_QA_LIST', data)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      getQaHeadBySlipNo(slip_no)
+        .then(response => {
+          const { data } = response;
+          commit('SET_QA_LIST', data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   },
   getQaHeadBySlipNo({ commit }, slip_no) {
     return new Promise((resolve, reject) => {
-      getQaHeadBySlipNo(slip_no).then(response => {
-        resolve(response)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      getQaHeadBySlipNo(slip_no)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   },
   deleteQaHead({ commit }, id) {
     return new Promise((resolve, reject) => {
-      deleteQaHead(id).then(response => {
-        resolve(response)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      deleteQaHead(id)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   },
   updateQaHead({ commit }, args) {
-    const { id, data } = args
+    const { id, data } = args;
     return new Promise((resolve, reject) => {
-      updateQaHead(id, data).then(response => {
-        resolve(response)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      updateQaHead(id, data)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   },
   updateQaHeadSummary({ commit }, args) {
-    const { id, data } = args
+    const { id, data } = args;
     return new Promise((resolve, reject) => {
-      updateQaHeadSummary(id, data).then(response => {
-        resolve(response)
-      }).catch(error => {
-        reject(error)
-      })
-    })
+      updateQaHeadSummary(id, data)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   },
   getQaSlipNoCheckOutObject({ commit }, slip_no) {
     return new Promise((resolve, reject) => {
-      getQaSlipNoCheckOutObject(slip_no).then(response => {
+      getQaSlipNoCheckOutObject(slip_no)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+  getQaDetailByQaHeadViaPagination({ commit }, id) {
+    var page = store.getters.qa_mcl_current_page
+    var size = store.getters.qa_mcl_page_size
+    return new Promise((resolve, reject) => {
+      getQaDetailByQaHeadViaPagination(size, page, id)
+        .then(response => {
+          const { data } = response
+          const { count, pages, results } = data
+
+          commit('SET_QA_MCL_LIST', results)
+          commit('SET_PAGE_COUNT', pages)
+          commit('SET_COUNT', count)
+          store.dispatch('qa/refreshMclTargetActual', id)
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+  newQaDetail({ count }, data) {
+    return new Promise((resolve, reject) => {
+      newQaDetail(data).then(response => {
+        const { data } = response
+        store.dispatch('qa/getQaDetailByQaHeadViaPagination', data.qahf)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  batchNewQaDetail({ count }, args) {
+    const { id, data } = args
+    return new Promise((resolve, reject) => {
+      batchNewQaDetail(data).then(response => {
+        store.dispatch('qa/getQaDetailByQaHeadViaPagination', id)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  deleteQaDetail({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      deleteQaDetail(id).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  updateQaDetailResult({ commit }, args) {
+    const { id, data } = args
+    return new Promise((resolve, reject) => {
+      updateQaDetailResult(id, data).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  updateQaDetail({ commit }, args) {
+    const { id, data } = args
+    return new Promise((resolve, reject) => {
+      updateQaDetail(id, data).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  putDefaultOK({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      putDefaultOK(id).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  codeReviewInspection({ commit }, args) {
+    const { object_id, slip_no } = args
+    return new Promise((resolve, reject) => {
+      codeReviewInspection(object_id, slip_no).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  refreshMclTargetActual({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      getMclTargetActual(id).then(response => {
+        const { data } = response
+        commit('SET_MCL_TARGET_ACTUAL', data)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  fileUpload({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      fileUpload(data).then(response => {
         resolve(response)
       }).catch(error => {
         reject(error)
       })
     })
   }
-}
+};
 
 export default {
   namespaced: true,
   state,
   mutations,
   actions
-}
+};

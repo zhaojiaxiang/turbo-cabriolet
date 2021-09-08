@@ -47,6 +47,12 @@ const getters = {
   slip_assigned_to_filters: state => state.projects.slip_assigned_to_filters,
   span_list: state => state.projects.span_list,
   // qa
-  qa_list: state => state.qa.qa_list
+  qa_list: state => state.qa.qa_list,
+  qa_mcl_list: state => state.qa.qa_mcl_list,
+  qa_mcl_current_page: state => state.qa.qa_mcl_current_page,
+  qa_mcl_page_size: state => state.qa.qa_mcl_page_size,
+  qa_mcl_page_count: state => state.qa.qa_mcl_page_count,
+  qa_mcl_count: state => state.qa.qa_mcl_count,
+  qa_mcl_target_actual: state => state.qa.qa_mcl_target_actual
 }
 export default getters

@@ -130,7 +130,7 @@ export default {
 
 <style lang="scss" scoped>
 .card-panel-col {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 .card-panel-description {
   font-weight: bold;

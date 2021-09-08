@@ -504,7 +504,6 @@ export default {
             });
             this.drawer = false;
           } else {
-            this.$message.error(this.form.fslipno + resp.data.message);
             this.form.fleader = this.form.fleader.split(',');
             this.form.fhelper = this.form.fhelper.split(',');
           }

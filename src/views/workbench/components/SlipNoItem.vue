@@ -120,18 +120,21 @@
         </template>
       </el-table-column>
     </el-table>
-    <div>
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        :hide-on-single-page="true"
-        :total="slip_count"
-        :page-size="slip_page_size"
-        :current-page="slip_current_page"
-        :page-count="slip_page_count"
-        @current-change="handlePage"
-      />
-    </div>
+    <el-row>
+      <el-col :xs="24" :sm="24" :lg="24">
+        <el-pagination
+          background
+          :current-page="slip_current_page"
+          :page-sizes="[5, 10, 15, 20, 30, 50, 100]"
+          :page-size="slip_page_size"
+          :page-count="slip_page_count"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="slip_count"
+          @size-change="handleSizeChange"
+          @current-change="handlePage"
+        />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -159,6 +162,11 @@ export default {
   methods: {
     handlePage(page) {
       store.commit('workbench/SET_SLIP_CURRENT_PAGE', page);
+      this.refreshLiaisons();
+    },
+
+    handleSizeChange(size) {
+      store.commit('workbench/SET_SLIP_PAGE_SIZE', size);
       this.refreshLiaisons();
     },
 

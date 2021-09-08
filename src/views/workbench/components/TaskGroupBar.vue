@@ -74,7 +74,7 @@ export default {
   margin-top: 8px;
 
   .card-panel-col {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 
   .card-panel {
