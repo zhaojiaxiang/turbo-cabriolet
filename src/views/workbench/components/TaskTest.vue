@@ -188,7 +188,6 @@
       <el-table-column label="代码Review" width="110">
         <template slot-scope="scope">
           <el-link
-            v-show="scope.row.code_id"
             style="margin-left:10px"
             type="primary"
             :underline="false"

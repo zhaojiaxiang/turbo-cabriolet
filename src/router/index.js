@@ -281,9 +281,22 @@ export const constantRoutes = [
     children: [
       {
         path: '',
-        component: () => import('@/views/common/QaContentText'),
-        name: 'QaContentText',
-        meta: { title: 'QA Proof', icon: '', noCache: true }
+        component: () => import('@/views/workbench/components/TaskApproval'),
+        name: 'TaskApproval',
+        meta: { title: 'Task Approval', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/approval/detail',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/workbench/components/TaskApprovalDetail'),
+        name: 'TaskApprovalDetail',
+        meta: { title: 'Task Approval Detail', icon: '', noCache: true }
       }
     ]
   },
@@ -294,9 +307,22 @@ export const constantRoutes = [
     children: [
       {
         path: '',
-        component: () => import('@/views/common/QaContentText'),
-        name: 'QaContentText',
-        meta: { title: 'QA Proof', icon: '', noCache: true }
+        component: () => import('@/views/workbench/components/TaskConfirm'),
+        name: 'TaskConfirm',
+        meta: { title: 'Task Confirm', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/confirm/detail',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/workbench/components/TaskConfirmDetail'),
+        name: 'TaskConfirmDetail',
+        meta: { title: 'Task Confirm Detail', icon: '', noCache: true }
       }
     ]
   },
@@ -307,9 +333,9 @@ export const constantRoutes = [
     children: [
       {
         path: '',
-        component: () => import('@/views/common/QaContentText'),
-        name: 'QaContentText',
-        meta: { title: 'QA Proof', icon: '', noCache: true }
+        component: () => import('@/views/workbench/components/TaskRelease'),
+        name: 'TaskRelease',
+        meta: { title: 'Task Release', icon: '', noCache: true }
       }
     ]
   }

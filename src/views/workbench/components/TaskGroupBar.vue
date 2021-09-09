@@ -14,7 +14,7 @@
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('messages')">
+      <div class="card-panel" @click="openTaskApproval()">
         <div class="card-panel-icon-wrapper">
           <svg-icon icon-class="tianshenpi" class-name="card-panel-icon" />
         </div>
@@ -27,7 +27,7 @@
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('purchases')">
+      <div class="card-panel" @click="openTaskConfirm()">
         <div class="card-panel-icon-wrapper">
           <svg-icon icon-class="gongdan" class-name="card-panel-icon" />
         </div>
@@ -40,7 +40,7 @@
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
+      <div class="card-panel" @click="openTaskRelease()">
         <div class="card-panel-icon-wrapper">
           <svg-icon icon-class="icon_renwujincheng" class-name="card-panel-icon" />
         </div>
@@ -69,6 +69,15 @@ export default {
   methods: {
     openTaskTest() {
       this.$router.push({ name: 'TaskTest' });
+    },
+    openTaskApproval() {
+      this.$router.push({ name: 'TaskApproval' });
+    },
+    openTaskConfirm() {
+      this.$router.push({ name: 'TaskConfirm' });
+    },
+    openTaskRelease() {
+      this.$router.push({ name: 'TaskRelease' });
     }
   }
 }

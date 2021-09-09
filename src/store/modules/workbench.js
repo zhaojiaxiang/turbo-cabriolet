@@ -12,7 +12,10 @@ import {
   getProjectMclDataStatistics,
   getSingleLiaisonBySlipNo,
   getMyMCL,
-  getMyPCL
+  getMyPCL,
+  getMyApproval,
+  getMyRelease,
+  getMyConfirm
 } from '@/api/workbench';
 import store from '..';
 
@@ -114,13 +117,13 @@ const mutations = {
     state.task_test_pcl = data
   },
   SET_TASK_APPROVAL(state, data) {
-
+    state.task_approval = data
   },
   SET_TASK_CONFIRM(state, data) {
-
+    state.task_confirm = data
   },
   SET_TASK_RELEASE(state, data) {
-
+    state.task_release = data
   }
 };
 
@@ -269,6 +272,39 @@ const actions = {
       getMyPCL().then(response => {
         const { data } = response
         commit('SET_TASK_TEST_PCL', data)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getMyApproval({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMyApproval().then(response => {
+        const { data } = response
+        commit('SET_TASK_APPROVAL', data)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getMyConfirm({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMyConfirm().then(response => {
+        const { data } = response
+        commit('SET_TASK_CONFIRM', data)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getMyRelease({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMyRelease().then(response => {
+        const { data } = response
+        commit('SET_TASK_RELEASE', data)
         resolve(response)
       }).catch(error => {
         reject(error)
