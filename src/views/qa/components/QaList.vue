@@ -57,7 +57,6 @@
 
 <script>
 import QaObjectSummary from '@/views/qa/components/QaObjectSummary';
-
 import QaCodeReview from '@/views/qa/components/QaCodeReview';
 import store from '@/store';
 import { mapGetters } from 'vuex';

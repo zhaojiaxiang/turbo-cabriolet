@@ -75,6 +75,7 @@ export default {
 }
 .vertical {
   display: table-cell;
+  color: #606266;
   height: 36px;
   vertical-align: middle;
 }

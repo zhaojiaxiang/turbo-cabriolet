@@ -37,6 +37,11 @@ const getters = {
   slip_page_count: state => state.workbench.slip_page_count,
   slip_count: state => state.workbench.slip_count,
   slip_table: state => state.workbench.slip_table,
+  task_test_mcl: state => state.workbench.task_test_mcl,
+  task_test_pcl: state => state.workbench.task_test_pcl,
+  task_approval: state => state.workbench.task_approval,
+  task_confirm: state => state.workbench.task_confirm,
+  task_release: state => state.workbench.task_release,
   // project
   project_mcl_list: state => state.projects.project_mcl_list,
   project_pcl_list: state => state.projects.project_pcl_list,

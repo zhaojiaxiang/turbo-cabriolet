@@ -27,6 +27,7 @@
             <el-col :xs="24" :sm="24" :lg="6">
               <el-button
                 type="primary"
+                plain
                 @click="onSubmit('form')"
               >新建</el-button>
             </el-col>
@@ -37,10 +38,13 @@
             <el-table
               v-loading="loading"
               :data="systems"
+              border
+              size="medium"
             >
               <el-table-column
                 prop="fsystemcd"
                 label="系统代码"
+                sortable
                 min-width="180"
               />
               <el-table-column
@@ -50,11 +54,12 @@
               />
               <el-table-column label="操作">
                 <template slot-scope="scope">
-                  <el-button
-                    size="mini"
-                    type="danger"
+                  <el-link
+                    :underline="false"
                     @click="handleDelete(scope.row.fsystemcd, scope.row.id)"
-                  >删除</el-button>
+                  >
+                    <svg-icon icon-class="delete_red" />
+                  </el-link>
                 </template>
               </el-table-column>
             </el-table>

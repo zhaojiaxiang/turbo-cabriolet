@@ -221,6 +221,97 @@ export const constantRoutes = [
         meta: { title: 'QA Proof', icon: '', noCache: true }
       }
     ]
+  },
+  {
+    path: '/task/test',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/workbench/components/TaskTest'),
+        name: 'TaskTest',
+        meta: { title: 'Task Test', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/test/pcl/class1',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/workbench/components/TaskPclTestClass1'),
+        name: 'TaskPclTestClass1',
+        meta: { title: 'Task Pcl Class1', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/test/pcl/class2',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/workbench/components/TaskPclTestClass2'),
+        name: 'TaskPclTestClass2',
+        meta: { title: 'Task Pcl Class2', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/test/pcl/list',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/workbench/components/TaskPclTestList'),
+        name: 'TaskPclTestList',
+        meta: { title: 'Task Pcl List', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/approval',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/common/QaContentText'),
+        name: 'QaContentText',
+        meta: { title: 'QA Proof', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/confirm',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/common/QaContentText'),
+        name: 'QaContentText',
+        meta: { title: 'QA Proof', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/task/release',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/common/QaContentText'),
+        name: 'QaContentText',
+        meta: { title: 'QA Proof', icon: '', noCache: true }
+      }
+    ]
   }
 ]
 

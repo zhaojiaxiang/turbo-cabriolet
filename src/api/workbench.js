@@ -102,3 +102,42 @@ export async function getSingleLiaisonBySlipNo(slip_no) {
   return resp
 }
 
+export async function getMyMCL() {
+  var resp = await request({
+    url: '/account/mine_task_mcl/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function getMyPCL() {
+  var resp = await request({
+    url: '/account/mine_task_pcl/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function getMyApproval() {
+  var resp = await request({
+    url: '/account/mine_task_approval/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function getMyConfirm() {
+  var resp = await request({
+    url: '/account/mine_task_conform/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function getMyRelease() {
+  var resp = await request({
+    url: '/account/mine_task_release/',
+    method: 'get'
+  })
+  return resp
+}

@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="40" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+      <div class="card-panel" @click="openTaskTest()">
         <div class="card-panel-icon-wrapper">
           <svg-icon icon-class="ceshishenqing" class-name="card-panel-icon" />
         </div>
@@ -65,6 +65,11 @@ export default {
   },
   computed: {
     ...mapGetters(['task_bar'])
+  },
+  methods: {
+    openTaskTest() {
+      this.$router.push({ name: 'TaskTest' });
+    }
   }
 }
 </script>

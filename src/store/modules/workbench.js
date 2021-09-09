@@ -10,7 +10,9 @@ import {
   modifyLiaison,
   liaisonFileUpdate,
   getProjectMclDataStatistics,
-  getSingleLiaisonBySlipNo
+  getSingleLiaisonBySlipNo,
+  getMyMCL,
+  getMyPCL
 } from '@/api/workbench';
 import store from '..';
 
@@ -22,7 +24,12 @@ const state = {
   slip_page_size: 10,
   slip_page_count: 1,
   slip_count: 0,
-  slip_table: []
+  slip_table: [],
+  task_test_mcl: [],
+  task_test_pcl: [],
+  task_approval: [],
+  task_confirm: [],
+  task_release: []
 };
 
 const mutations = {
@@ -99,6 +106,21 @@ const mutations = {
       };
       state.slip_table.push(liaison);
     }
+  },
+  SET_TASK_TEST_MCL(state, data) {
+    state.task_test_mcl = data
+  },
+  SET_TASK_TEST_PCL(state, data) {
+    state.task_test_pcl = data
+  },
+  SET_TASK_APPROVAL(state, data) {
+
+  },
+  SET_TASK_CONFIRM(state, data) {
+
+  },
+  SET_TASK_RELEASE(state, data) {
+
   }
 };
 
@@ -225,6 +247,28 @@ const actions = {
   getSingleLiaisonBySlipNo({ commit }, slip_no) {
     return new Promise((resolve, reject) => {
       getSingleLiaisonBySlipNo(slip_no).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getMyMCL({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMyMCL().then(response => {
+        const { data } = response
+        commit('SET_TASK_TEST_MCL', data)
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getMyPCL({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMyPCL().then(response => {
+        const { data } = response
+        commit('SET_TASK_TEST_PCL', data)
         resolve(response)
       }).catch(error => {
         reject(error)
