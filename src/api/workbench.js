@@ -52,6 +52,14 @@ export async function getSingleLiaison(id) {
   return resp
 }
 
+export async function getSingleALlLiaisonBySlipNo(slipno) {
+  var resp = await request({
+    url: '/liaison/all_liaisons/?fslipno' + slipno,
+    method: 'get'
+  })
+  return resp;
+}
+
 export async function newLiaison(data) {
   var resp = await request({
     url: '/liaison/liaisons/',
