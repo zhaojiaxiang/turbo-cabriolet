@@ -7,7 +7,7 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /* Router Modules */
-import nestedRouter from './modules/nested'
+import queryRouter from './modules/dataquery'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -76,7 +76,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        meta: { title: '仪表盘', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -90,7 +90,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'Profile',
-        meta: { title: 'Profile', icon: 'user', noCache: true }
+        meta: { title: '个人中心', icon: 'user', noCache: true }
       }
     ]
   },
@@ -102,7 +102,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/workbench/index'),
         name: 'Workbench',
-        meta: { title: 'Workbench', icon: 'el-icon-menu', noCache: true }
+        meta: { title: '工作台', icon: 'el-icon-menu', noCache: true }
       }
     ]
   },
@@ -114,7 +114,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/checkouts/index'),
         name: 'Checkouts',
-        meta: { title: 'Checkouts', icon: 'el-icon-document', noCache: true }
+        meta: { title: '程序管理', icon: 'el-icon-document', noCache: true }
       }
     ]
   },
@@ -127,7 +127,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/projects/components/ProjectOverview'),
         name: 'ProjectOverview',
-        meta: { title: 'ProjectOverview', icon: 'el-icon-document', noCache: true }
+        meta: { title: '项目一览', icon: 'el-icon-document', noCache: true }
       }
     ]
   },
@@ -140,7 +140,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/projects/components/ProjectMclQaTestList'),
         name: 'ProjectMclQaTestList',
-        meta: { title: 'Project QA', icon: '', noCache: true }
+        meta: { title: '项目-QA', icon: '', noCache: true }
       }
     ]
   },
@@ -153,7 +153,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/projects/components/ProjectPclQaClass1'),
         name: 'ProjectPclQaClass1',
-        meta: { title: 'Project PCL Class1', icon: '', noCache: true }
+        meta: { title: '项目-PCL分类1', icon: '', noCache: true }
       }
     ]
   },
@@ -166,7 +166,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/projects/components/ProjectPclQaClass2'),
         name: 'ProjectPclQaClass2',
-        meta: { title: 'Project PCL Class2', icon: '', noCache: true }
+        meta: { title: '项目-PCL分类2', icon: '', noCache: true }
       }
     ]
   },
@@ -179,7 +179,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/projects/components/ProjectPclQaList'),
         name: 'ProjectPclQaList',
-        meta: { title: 'Project PCL List', icon: '', noCache: true }
+        meta: { title: '项目-PCL分类2-列表', icon: '', noCache: true }
       }
     ]
   },
@@ -205,7 +205,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/qa/components/QaMclTestIndex'),
         name: 'QAMclTestList',
-        meta: { title: 'QA MCL List', icon: '', noCache: true }
+        meta: { title: 'QA-列表', icon: '', noCache: true }
       }
     ]
   },
@@ -218,7 +218,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/common/QaContentText'),
         name: 'QaContentText',
-        meta: { title: 'QA Proof', icon: '', noCache: true }
+        meta: { title: '贴图', icon: '', noCache: true }
       }
     ]
   },
@@ -231,7 +231,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskTest'),
         name: 'TaskTest',
-        meta: { title: 'Task Test', icon: '', noCache: true }
+        meta: { title: '待测试', icon: '', noCache: true }
       }
     ]
   },
@@ -244,7 +244,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskPclTestClass1'),
         name: 'TaskPclTestClass1',
-        meta: { title: 'Task Pcl Class1', icon: '', noCache: true }
+        meta: { title: '分类1', icon: '', noCache: true }
       }
     ]
   },
@@ -257,7 +257,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskPclTestClass2'),
         name: 'TaskPclTestClass2',
-        meta: { title: 'Task Pcl Class2', icon: '', noCache: true }
+        meta: { title: '分类2', icon: '', noCache: true }
       }
     ]
   },
@@ -270,7 +270,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskPclTestList'),
         name: 'TaskPclTestList',
-        meta: { title: 'Task Pcl List', icon: '', noCache: true }
+        meta: { title: '分类2-列表', icon: '', noCache: true }
       }
     ]
   },
@@ -283,7 +283,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskApproval'),
         name: 'TaskApproval',
-        meta: { title: 'Task Approval', icon: '', noCache: true }
+        meta: { title: '待审核', icon: '', noCache: true }
       }
     ]
   },
@@ -296,7 +296,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskApprovalDetail'),
         name: 'TaskApprovalDetail',
-        meta: { title: 'Task Approval Detail', icon: '', noCache: true }
+        meta: { title: '待审核-明细', icon: '', noCache: true }
       }
     ]
   },
@@ -309,7 +309,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskConfirm'),
         name: 'TaskConfirm',
-        meta: { title: 'Task Confirm', icon: '', noCache: true }
+        meta: { title: '待确认', icon: '', noCache: true }
       }
     ]
   },
@@ -322,7 +322,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskConfirmDetail'),
         name: 'TaskConfirmDetail',
-        meta: { title: 'Task Confirm Detail', icon: '', noCache: true }
+        meta: { title: '待确认-明细', icon: '', noCache: true }
       }
     ]
   },
@@ -335,7 +335,33 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskRelease'),
         name: 'TaskRelease',
-        meta: { title: 'Task Release', icon: '', noCache: true }
+        meta: { title: '待发布', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/report/single',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/dataquery/components/ReportSingle'),
+        name: 'ReportSingle',
+        meta: { title: '报表-单个', icon: '', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/report/multiple',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/dataquery/components/ReportMultiple'),
+        name: 'ReportMultiple',
+        meta: { title: '报表-多个', icon: '', noCache: true }
       }
     ]
   }
@@ -346,7 +372,7 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  nestedRouter,
+  queryRouter,
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

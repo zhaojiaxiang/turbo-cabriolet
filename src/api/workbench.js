@@ -60,6 +60,15 @@ export async function getSingleALlLiaisonBySlipNo(slipno) {
   return resp;
 }
 
+export async function getLiaisonsViaParam(system, project, slip, type, status, order, leader, helper, assigned, sirno) {
+  var resp = await request({
+    url: '/liaison/all_liaisons/?fsystemcd=' + system + '&fprojectcd=' + project + '&fslipno=' + slip + '&ftype=' +
+    type + '&fstatus=' + status + '&fodrno=' + order + '&fleader=' + leader + '&fhelper=' + helper + '&fassignedto=' + assigned + '&fsirno=' + sirno,
+    method: 'get'
+  })
+  return resp
+}
+
 export async function newLiaison(data) {
   var resp = await request({
     url: '/liaison/liaisons/',

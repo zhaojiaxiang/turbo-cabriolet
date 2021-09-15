@@ -61,6 +61,15 @@ const getters = {
   qa_pcl_target_actual: state => state.qa.qa_pcl_target_actual,
   qa_pcl_class1_list: state => state.qa.qa_pcl_class1_list,
   qa_pcl_class2_list: state => state.qa.qa_pcl_class2_list,
-  qa_pcl_list: state => state.qa.qa_pcl_list
+  qa_pcl_list: state => state.qa.qa_pcl_list,
+  // query
+  query_project_list: state => state.query.query_project_list,
+  query_project_current_page: state => state.query.query_project_current_page,
+  query_project_page_size: state => state.query.query_project_page_size,
+  query_project_page_count: state => state.query.query_project_page_count,
+  query_project_count: state => state.query.query_project_count,
+  query_project_organization_id: state => state.query.query_project_organization_id,
+  query_project_project_code: state => state.query.query_project_project_code,
+  query_project_order_no: state => state.query.query_project_order_no
 }
 export default getters

@@ -83,8 +83,12 @@
   box-sizing: content-box;
 }
 
+.el-card__header {
+  padding: 0 15px;
+}
+
 .el-card__body {
-  padding: 20px;
+  padding: 10px 15px;
 }
 
 .el-step__title {

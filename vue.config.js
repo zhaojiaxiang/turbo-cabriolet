@@ -48,6 +48,13 @@ module.exports = {
         pathRewrite: {
           '^/files': '/api/qa/files'
         }
+      },
+      '/media': {
+        target: 'http://127.0.0.1:8000/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/media': '/media'
+        }
       }
     }
   },

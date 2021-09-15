@@ -227,7 +227,7 @@ export default {
       this.currentID = id;
     },
     openSlipNoQa(fslipno) {
-      this.$router.push({ name: 'QaList', query: { slipno: fslipno }});
+      this.$router.push({ name: 'QA', query: { slip_no: fslipno }});
     },
     async refreshLiaisons() {
       this.tableData = [];
