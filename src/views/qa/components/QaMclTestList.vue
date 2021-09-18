@@ -85,6 +85,7 @@
         label="结果"
         width="100"
         sortable
+        fixed="right"
         :filters="[
           { text: 'NULL', value: null },
           { text: 'OK', value: 'OK' },
@@ -121,7 +122,7 @@
           </el-dropdown>
         </template>
       </el-table-column>
-      <el-table-column label="贴图" width="100">
+      <el-table-column label="贴图" fixed="right" width="100">
         <template slot-scope="scope">
           <el-link
             v-if="isCanImage(scope.row.test_tag)"
@@ -132,7 +133,7 @@
           >{{ scope.row.test_tag }}</el-link>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="100">
+      <el-table-column label="操作" fixed="right" width="100">
         <template slot-scope="scope">
           <el-link
             v-show="isCanEdit(scope.row)"

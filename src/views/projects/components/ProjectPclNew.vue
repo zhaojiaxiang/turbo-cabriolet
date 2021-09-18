@@ -6,7 +6,7 @@
           <el-form-item prop="fslipno">
             <el-input
               v-model="form.fslipno"
-              :disabled="true"
+              :disabled="isDisabled"
               class="width-sytle"
               placeholder="订单号"
             />
@@ -58,12 +58,14 @@
 
 <script>
 import store from '@/store';
+import { getQaHeadBySlipNo } from '@/api/qa';
 import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
       dialogFormVisible: false,
       isFirstPCL: false,
+      isDisabled: true,
       form: {
         fsystemcd: '',
         fprojectcd: '',
@@ -74,13 +76,30 @@ export default {
       },
       rules: {
         fobjectid: [
-          { required: true, message: '请输入测试对象', trigger: 'change' }
+          { required: true, message: '请输入测试对象', trigger: 'blur' }
         ]
       }
     };
   },
   computed: {
     ...mapGetters(['systems', 'projects'])
+  },
+  watch: {
+    form: {
+      async handler(val) {
+        if (val.fslipno && val.fslipno.indexOf('0000') === 0) {
+          var resp = await getQaHeadBySlipNo(val.fslipno)
+          if (resp.result === 'OK') {
+            const { data } = resp
+            if (data.length > 0) {
+              this.form.fsystemcd = data[0].fsystemcd
+              this.form.fprojectcd = data[0].fprojectcd
+            }
+          }
+        }
+      },
+      deep: true
+    }
   },
   methods: {
     async handleDialog(id) {
@@ -93,7 +112,10 @@ export default {
           this.form.fprojectcd = resp.data.fprojectcd;
           this.form.fobjectid = '';
           this.form.fslipno = resp.data.fslipno;
+          this.isDisabled = true
         }
+      } else {
+        this.isDisabled = false
       }
     },
 
@@ -103,7 +125,8 @@ export default {
           var resp = await store.dispatch('qa/newQaHead', this.form)
           if (resp.result === 'OK') {
             this.dialogFormVisible = false;
-            await store.dispatch('projects/getProjectPclList', this.form.fslipno)
+            this.$emit('refreshPcl')
+            this.form.fslipno = ''
             this.$message({
               message: '创建成功！',
               type: 'success'

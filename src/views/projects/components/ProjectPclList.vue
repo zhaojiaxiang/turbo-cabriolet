@@ -2,12 +2,8 @@
   <div>
     <el-row>
       <el-col :span="24">
-        <div style="text-align:right;">
-          <el-button
-            v-show="isCanAddPCL"
-            plain
-            @click="openPCLNew"
-          >新建结合测试</el-button>
+        <div style="text-align:left; " class="vertical">
+          <h3 style="margin:0 auto;">结合测试</h3>
         </div>
       </el-col>
     </el-row>
@@ -52,46 +48,14 @@
 
       <el-table-column prop="qadfcount" label="测试项数量" width="100" />
 
-      <el-table-column label="操作" width="80">
-        <template slot-scope="scope">
-          <el-link
-            v-show="scope.row.qadfcount === 0"
-            type="primary"
-            :underline="false"
-            icon="el-icon-edit-outline"
-            @click="openPclModify(scope.row.id)"
-          />
-          <el-link
-            v-show="scope.row.qadfcount === 0"
-            style="margin-left:20px"
-            type="primary"
-            :underline="false"
-            icon="el-icon-delete"
-            @click="deleteQaHead(scope.row.id, scope.row.fobjectid)"
-          />
-        </template>
-      </el-table-column>
     </el-table>
-    <ProjectPclNew
-      ref="ProjectPclNew"
-    />
-
-    <ProjectPclModify
-      ref="ProjectPclModify"
-    />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import store from '@/store';
-import ProjectPclNew from './ProjectPclNew';
-import ProjectPclModify from './ProjectPclModify';
 export default {
-  components: {
-    ProjectPclNew,
-    ProjectPclModify
-  },
   data() {
     return {
       loading: false,
@@ -118,47 +82,6 @@ export default {
       });
     },
 
-    openPclModify(id) {
-      this.$refs.ProjectPclModify.handleDialog(id);
-    },
-
-    openPCLNew() {
-      this.$refs.ProjectPclNew.handleDialog(this.any_qahf_id);
-    },
-
-    isCanAddPCL() {
-      if (this.order_info.status === 4) {
-        return false;
-      }
-      return true;
-    },
-
-    deleteQaHead(id, fobjectid) {
-      this.$confirm('此操作将永久删除' + fobjectid + ', 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(async action => {
-          if (action === 'confirm') {
-            var resp = await store.dispatch('qa/deleteQaHead', id)
-            if (resp.result === 'OK') {
-              await store.dispatch('projects/getProjectPclList', this.order_no)
-              this.$message({
-                message: fobjectid + '已经删除！',
-                type: 'success'
-              });
-            }
-          }
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '取消删除'
-          });
-        });
-    },
-
     filterStatus(value, row) {
       return row.fstatus === value;
     }
@@ -166,4 +89,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.vertical {
+  display: table-cell;
+  color: #606266;
+  height: 36px;
+  vertical-align: middle;
+}
+</style>

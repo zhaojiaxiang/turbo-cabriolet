@@ -57,6 +57,7 @@
 
 <script>
 import CountTo from 'vue-count-to'
+import store from '@/store'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -65,6 +66,9 @@ export default {
   },
   computed: {
     ...mapGetters(['task_bar'])
+  },
+  created: async function() {
+    await store.dispatch('workbench/getMyTaskBar')
   },
   methods: {
     openTaskTest() {

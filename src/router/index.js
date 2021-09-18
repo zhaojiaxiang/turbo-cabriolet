@@ -67,19 +67,19 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: '仪表盘', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/dashboard',
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: () => import('@/views/dashboard/index'),
+  //       name: 'Dashboard',
+  //       meta: { title: '仪表盘', icon: 'dashboard', affix: true }
+  //     }
+  //   ]
+  // },
   {
     path: '/profile',
     component: Layout,
@@ -87,7 +87,7 @@ export const constantRoutes = [
     hidden: true,
     children: [
       {
-        path: 'index',
+        path: '',
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: '个人中心', icon: 'user', noCache: true }
@@ -95,14 +95,14 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/workbench',
+    path: '/',
     component: Layout,
     children: [
       {
         path: 'index',
         component: () => import('@/views/workbench/index'),
         name: 'Workbench',
-        meta: { title: '工作台', icon: 'el-icon-menu', noCache: true }
+        meta: { title: '工作台', icon: 'el-icon-menu', noCache: true, affix: true }
       }
     ]
   },
@@ -111,7 +111,7 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '',
         component: () => import('@/views/checkouts/index'),
         name: 'Checkouts',
         meta: { title: '程序管理', icon: 'el-icon-document', noCache: true }

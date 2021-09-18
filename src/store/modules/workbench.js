@@ -174,6 +174,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       deleteLiaison(id).then(response => {
         store.dispatch('workbench/getLiaisonsViaPagination')
+        store.dispatch('workbench/refreshProjectItems')
         resolve(response)
       }).catch(error => {
         reject(error)
@@ -185,6 +186,7 @@ const actions = {
       const { id, data } = args
       updateLiaisonStatus(id, data).then(response => {
         store.dispatch('workbench/getLiaisonsViaPagination')
+        store.dispatch('workbench/refreshProjectItems')
         resolve(response)
       }).catch(error => {
         reject(error)
@@ -195,6 +197,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       newLiaison(data).then(response => {
         store.dispatch('workbench/getLiaisonsViaPagination')
+        store.dispatch('workbench/refreshProjectItems')
         resolve(response)
       }).catch(error => {
         reject(error)
@@ -214,6 +217,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       modifyLiaison(id, data).then(response => {
         store.dispatch('workbench/getLiaisonsViaPagination')
+        store.dispatch('workbench/refreshProjectItems')
         resolve(response)
       }).catch(error => {
         reject(error)

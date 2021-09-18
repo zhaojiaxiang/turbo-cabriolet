@@ -144,6 +144,7 @@ const actions = {
         .then(response => {
           const { data } = response;
           commit('SET_QA_LIST', data);
+          resolve(response)
         })
         .catch(error => {
           reject(error);

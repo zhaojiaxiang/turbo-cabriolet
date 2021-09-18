@@ -2,9 +2,17 @@
   <div class="div-container">
 
     <el-row class="row-top">
-      <el-col :span="24">
+      <el-col :span="12">
         <div style="text-align:left; " class="vertical">
           <h3 style="margin:0 auto;">结合测试</h3>
+        </div>
+      </el-col>
+      <el-col :span="12">
+        <div style="text-align:right;">
+          <el-button
+            plain
+            @click="openPCLNew"
+          >新建结合测试</el-button>
         </div>
       </el-col>
     </el-row>
@@ -74,7 +82,7 @@
         min-width="150"
         show-overflow-tooltip
       />
-      <el-table-column label="操作" width="120" fixed="right">
+      <el-table-column label="操作" width="150" fixed="right">
         <template slot-scope="scope">
           <el-link
             style="margin-left:10px"
@@ -82,6 +90,20 @@
             :underline="false"
             @click="openTaskPclClass1(scope.row.qahf_id)"
           >测试</el-link>
+          <el-link
+            v-show="scope.row.modifiy"
+            style="margin-left:10px"
+            type="primary"
+            :underline="false"
+            @click="openPclModify(scope.row.qahf_id)"
+          >编辑</el-link>
+          <el-link
+            v-show="scope.row.delete"
+            style="margin-left:10px"
+            type="primary"
+            :underline="false"
+            @click="deleteQaHead(scope.row.qahf_id, scope.row.fobjectid)"
+          >删除</el-link>
         </template>
       </el-table-column>
     </el-table>
@@ -210,6 +232,15 @@
     <QaObjectSummary ref="QaObjectSummary" />
     <QaDesignReview ref="QaDesignReview" :isdisable="false" />
     <QaCodeReview ref="QaCodeReview" :isdisable="false" />
+    <ProjectPclNew
+      ref="ProjectPclNew"
+      @refreshPcl="refreshTaskTest"
+    />
+
+    <ProjectPclModify
+      ref="ProjectPclModify"
+      @refreshPcl="refreshTaskTest"
+    />
   </div>
 </template>
 
@@ -217,13 +248,17 @@
 import QaDesignReview from '@/views/qa/components/QaDesignReview';
 import QaCodeReview from '@/views/qa/components/QaCodeReview';
 import QaObjectSummary from '@/views/qa/components/QaObjectSummary';
+import ProjectPclNew from '@/views/projects/components/ProjectPclNew';
+import ProjectPclModify from '@/views/projects/components/ProjectPclModify';
 import store from '@/store';
 import { mapGetters } from 'vuex';
 export default {
   components: {
     QaDesignReview,
     QaCodeReview,
-    QaObjectSummary
+    QaObjectSummary,
+    ProjectPclNew,
+    ProjectPclModify
   },
   data() {
     return {
@@ -289,6 +324,40 @@ export default {
       await store.dispatch('workbench/getMyPCL')
       this.reloadMclData(this.task_test_mcl)
       this.reloadPclData(this.task_test_pcl)
+    },
+
+    openPclModify(id) {
+      this.$refs.ProjectPclModify.handleDialog(id);
+    },
+
+    openPCLNew() {
+      this.$refs.ProjectPclNew.handleDialog('');
+    },
+
+    deleteQaHead(id, fobjectid) {
+      this.$confirm('此操作将永久删除' + fobjectid + ', 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(async action => {
+          if (action === 'confirm') {
+            var resp = await store.dispatch('qa/deleteQaHead', id)
+            if (resp.result === 'OK') {
+              this.refreshTaskTest()
+              this.$message({
+                message: fobjectid + '已经删除！',
+                type: 'success'
+              });
+            }
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消删除'
+          });
+        });
     },
 
     async reloadMclData(taskData) {
@@ -369,15 +438,25 @@ export default {
         if (taskData[i].fstatus === '1') {
           taskData[i].fstatus = '初始';
           taskData[i].tagtype = 'info';
+          taskData[i].modifiy = true
         } else if (taskData[i].fstatus === '2') {
           taskData[i].fstatus = '已审核';
           taskData[i].tagtype = '';
+          taskData[i].modifiy = false
         } else if (taskData[i].fstatus === '3') {
           taskData[i].fstatus = '已提交';
           taskData[i].tagtype = 'warning';
+          taskData[i].modifiy = false
         } else if (taskData[i].fstatus === '4') {
           taskData[i].fstatus = '已确认';
           taskData[i].tagtype = 'success';
+          taskData[i].modifiy = false
+        }
+
+        if (taskData[i].qa_count > 0) {
+          taskData[i].delete = false
+        } else {
+          taskData[i].delete = true
         }
 
         slip_json.text = taskData[i].fslipno;

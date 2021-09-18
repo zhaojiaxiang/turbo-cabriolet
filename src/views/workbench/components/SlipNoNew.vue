@@ -347,7 +347,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['systems', 'projects', 'group_users', 'all_group_users'])
+    ...mapGetters(['systems', 'projects', 'group_users', 'all_group_users', 'name'])
   },
   watch: {
     switch_value(newval) {
@@ -373,6 +373,7 @@ export default {
   mounted: function() {
     var this_ = this;
     this_.loading = true;
+    this.form.fassignedto = this.name
     this.bus.$on('openSlipNoNew', async function() {
       this_.drawer = true;
     });

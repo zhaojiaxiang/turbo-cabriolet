@@ -103,7 +103,7 @@ export default {
 
           if (resp.result === 'OK') {
             this.dialogFormVisible = false;
-            await store.dispatch('projects/getProjectPclList', this.form.fslipno)
+            this.$emit('refreshPcl')
             this.$message({
               message: '更新成功！',
               type: 'success'
