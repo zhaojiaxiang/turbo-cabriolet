@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import { getReportList, getReportPCLList } from '@/api/query';
 export default {
   data() {
@@ -61,9 +62,14 @@ export default {
       order_no: ''
     }
   },
+  created() {
+    var order_no = Cookies.get('REPORTQUERYORDER')
+    this.refreshReportList(order_no)
+  },
   methods: {
     async refreshReportList(order_no) {
       this.order_no = order_no
+      Cookies.set('REPORTQUERYORDER', order_no)
       var resp = await getReportList(order_no)
       this.tableData = resp.data;
 

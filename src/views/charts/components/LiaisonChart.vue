@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MixChart from './components/mix-chart';
+import MixChart from './mix-chart';
 
 export default {
   name: 'DashboardAdmin',

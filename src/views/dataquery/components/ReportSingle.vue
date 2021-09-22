@@ -194,12 +194,17 @@ export default {
   methods: {
     printdiv() {
       var newstr = document.getElementById('div_print').innerHTML;
-      // var oldstr = document.body.innerHTML;
       document.body.innerHTML = newstr;
       window.print();
-      // document.body.innerHTML = oldstr;
+      this.refreshView()
       location.reload();
       return false;
+    },
+
+    refreshView() {
+      this.$router.push({
+        path: '/query/report'
+      })
     },
 
     liaisonCellClass({ columnIndex }) {
@@ -241,15 +246,28 @@ export default {
   }
 };
 </script>
+
 <style>
+
 .table_title_style {
   background: #f6f5f5;
 }
-.bg-purple {
-  background: #d3dce6;
-}
+
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
+}
+@media print {
+  @page {
+    /* 横向 */
+    size: A3;
+
+    /* 边距 上右下左 */
+    margin: 0;
+  }
+  body {
+    margin: 2cm;
+  }
+
 }
 </style>

@@ -8,6 +8,7 @@ import Layout from '@/layout'
 
 /* Router Modules */
 import queryRouter from './modules/dataquery'
+import chartRouter from './modules/charts'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -67,19 +68,6 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
-  // {
-  //   path: '/',
-  //   component: Layout,
-  //   redirect: '/dashboard',
-  //   children: [
-  //     {
-  //       path: 'dashboard',
-  //       component: () => import('@/views/dashboard/index'),
-  //       name: 'Dashboard',
-  //       meta: { title: '仪表盘', icon: 'dashboard', affix: true }
-  //     }
-  //   ]
-  // },
   {
     path: '/profile',
     component: Layout,
@@ -103,6 +91,18 @@ export const constantRoutes = [
         component: () => import('@/views/workbench/index'),
         name: 'Workbench',
         meta: { title: '工作台', icon: 'el-icon-menu', noCache: true, affix: true }
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    component: Layout,
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: '仪表盘', icon: 'dashboard', noCache: true }
       }
     ]
   },
@@ -373,6 +373,7 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   queryRouter,
+  chartRouter,
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
