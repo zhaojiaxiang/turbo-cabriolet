@@ -5,10 +5,9 @@
 <script>
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
-import resize from './mixins/resize'
+import { dashboardProjectTestDetail } from '@/api/dashboard'
 
 export default {
-  mixins: [resize],
   props: {
     className: {
       type: String,
@@ -25,7 +24,8 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      project: {}
     }
   },
   mounted() {
@@ -41,8 +41,11 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart() {
+    async initChart(orderNo) {
       this.chart = echarts.init(this.$el, 'macarons')
+
+      var resp = await dashboardProjectTestDetail(orderNo)
+      this.project = resp.data
 
       this.chart.setOption({
         tooltip: {
@@ -52,7 +55,7 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['Industries', 'Technology', 'Forex', 'Gold', 'Forecasts']
+          data: this.project.name
         },
         series: [
           {
@@ -61,13 +64,7 @@ export default {
             roseType: 'radius',
             radius: [15, 95],
             center: ['50%', '38%'],
-            data: [
-              { value: 320, name: 'Industries' },
-              { value: 240, name: 'Technology' },
-              { value: 149, name: 'Forex' },
-              { value: 100, name: 'Gold' },
-              { value: 59, name: 'Forecasts' }
-            ],
+            data: this.project.data,
             animationEasing: 'cubicInOut',
             animationDuration: 2600
           }

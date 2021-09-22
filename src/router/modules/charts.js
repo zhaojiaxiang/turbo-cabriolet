@@ -8,20 +8,20 @@ const chartRouter = {
   name: 'Charts',
   meta: {
     title: '图表统计',
-    icon: 'nested'
+    icon: 'chart'
   },
   children: [
     {
       path: 'liaisons',
       name: 'LiaisonChart',
-      component: () => import('@/views/charts/components/LiaisonChart'),
+      component: () => import('@/views/charts/components/LiaisonsChart'),
       meta: { title: '联络票' }
     },
     {
-      path: 'slip_no',
-      name: 'SlipNoQuery',
-      component: () => import('@/views/dataquery/components/SlipNoQuery'),
-      meta: { title: '联络票查询' }
+      path: 'temp',
+      name: 'temp',
+      component: () => import('@/views/charts/components/LiaisonsChart'),
+      meta: { title: '占位符' }
     }
   ]
 };

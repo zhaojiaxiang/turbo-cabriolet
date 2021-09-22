@@ -1,31 +1,65 @@
 <template>
   <div class="dashboard-container">
-    <component :is="currentRole" />
+    <el-row :gutter="32">
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <el-row>
+            <el-col :xs="12" :sm="12" :lg="12">
+              <el-input v-model="orderno" placeholder="订单号" clearable /></el-col>
+          </el-row>
+          <ProjectTestDetailChart ref="projectTestDetail" />
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <ProjectTestDetailChart />
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <ProjectTestDetailChart />
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import adminDashboard from './admin'
-import editorDashboard from './editor'
-
+import ProjectTestDetailChart from './components/ProjectTestDetailChart';
 export default {
   name: 'Dashboard',
-  components: { adminDashboard, editorDashboard },
+  components: { ProjectTestDetailChart },
   data() {
     return {
-      currentRole: 'adminDashboard'
-    }
+      orderno: ''
+    };
   },
-  computed: {
-    ...mapGetters([
-      'roles'
-    ])
-  },
-  created() {
-    if (!this.roles.includes('admin')) {
-      this.currentRole = 'editorDashboard'
+  watch: {
+    orderno(newval) {
+      if (newval) {
+        this.$refs.projectTestDetail.initChart(newval)
+      }
     }
   }
-}
+};
 </script>
+
+<style lang="scss" scoped>
+.dashboard-container {
+  padding: 32px;
+  background-color: rgb(240, 242, 245);
+  position: relative;
+
+  .chart-wrapper {
+    background: #fff;
+    padding: 16px 16px 0;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .chart-wrapper {
+    padding: 8px;
+  }
+}
+</style>

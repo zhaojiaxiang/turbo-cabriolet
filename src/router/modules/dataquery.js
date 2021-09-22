@@ -28,7 +28,7 @@ const queryRouter = {
       path: 'report',
       name: 'Report',
       component: () => import('@/views/dataquery/components/ReportQuery'),
-      meta: { title: '报表' }
+      meta: { title: '报表导出' }
     }
   ]
 };

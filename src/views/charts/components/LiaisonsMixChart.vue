@@ -4,8 +4,10 @@
 
 <script>
 import echarts from 'echarts';
-import resize from './mixins/resize';
-import { dashboardLiaisons } from '@/api/dashboard';
+import resize from '../mixins/resize';
+import { getOrganization } from '@/api/common';
+import { dashboardLiaisons, dashboardGroupLiaisons } from '@/api/dashboard';
+import { mapGetters } from 'vuex';
 
 export default {
   mixins: [resize],
@@ -30,11 +32,15 @@ export default {
   data() {
     return {
       chart: null,
-      liaisons: {}
+      liaisons: {},
+      chartText: ''
     };
   },
+  computed: {
+    ...mapGetters(['name'])
+  },
   mounted() {
-    this.initChart();
+    this.initLiaisonsChart(this.name);
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -44,16 +50,29 @@ export default {
     this.chart = null;
   },
   methods: {
+
+    async initLiaisonsChart(user) {
+      var resp = await dashboardLiaisons(user)
+      this.liaisons = resp.data;
+      this.chartText = '联络票统计(' + user + ')'
+      this.initChart()
+    },
+
+    async initGroupLiaisonsChart(group) {
+      var resp = await dashboardGroupLiaisons(group)
+      this.liaisons = resp.data;
+      var resp_group = await getOrganization(group)
+      this.chartText = '联络票统计(' + resp_group.data.name + ')'
+      this.initChart()
+    },
+
     async initChart() {
       this.chart = echarts.init(document.getElementById(this.id));
-
-      var resp = await dashboardLiaisons('')
-      this.liaisons = resp.data;
 
       this.chart.setOption({
         backgroundColor: '#344b58',
         title: {
-          text: '联络票统计',
+          text: this.chartText,
           x: '20',
           top: '20',
           textStyle: {
@@ -157,8 +176,8 @@ export default {
           {
             type: 'inside',
             show: true,
-            height: 15,
-            start: 1,
+            height: 20,
+            start: 5,
             end: 35
           }
         ],

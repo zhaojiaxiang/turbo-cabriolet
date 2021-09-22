@@ -24,6 +24,22 @@ export async function getGroupUsers() {
   return resp
 }
 
+export async function getOrganizationUsers(organization) {
+  var resp = await request({
+    url: '/rbac/persons_in_organization/?organization=' + organization,
+    method: 'get'
+  })
+  return resp
+}
+
+export async function getOrganization(organization) {
+  var resp = await request({
+    url: '/rbac/organization/' + organization + '/',
+    method: 'get'
+  })
+  return resp
+}
+
 export async function getAllUsers() {
   var resp = await request({
     url: '/account/user_list/',
