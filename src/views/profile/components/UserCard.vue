@@ -1,7 +1,7 @@
 <template>
   <el-card style="margin-bottom:20px;">
     <div slot="header" class="clearfix">
-      <span>About me</span>
+      <span>基本信息</span>
     </div>
 
     <div class="user-profile">
@@ -18,7 +18,7 @@
 
     <div class="user-bio">
       <div class="user-education user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>Introduction</span></div>
+        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>简介</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
             <el-row>

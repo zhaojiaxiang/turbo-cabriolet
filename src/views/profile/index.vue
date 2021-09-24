@@ -10,10 +10,10 @@
         <el-col :span="18" :xs="24">
           <el-card>
             <el-tabs v-model="activeTab">
-              <el-tab-pane label="Change password" name="changepasswor">
+              <el-tab-pane label="密码修改" name="changepasswor">
                 <change-password />
               </el-tab-pane>
-              <el-tab-pane label="Man Power" name="manpower">
+              <el-tab-pane label="工时同步" name="manpower">
                 <man-power :user="user" />
               </el-tab-pane>
             </el-tabs>
