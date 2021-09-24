@@ -109,7 +109,6 @@ export default {
       var resp = await getQadetailProofContentText(id)
       if (resp.result === 'OK') {
         this.proofs = resp.data;
-        console.log(this.proofs);
       }
     }
   }

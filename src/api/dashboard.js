@@ -23,3 +23,43 @@ export async function dashboardProjectTestDetail(orderNo) {
   })
   return resp
 }
+
+export async function liaisonTypeScale() {
+  var resp = await request({
+    url: '/dashboard/liaison_type_scale/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function liaisonPlanActual() {
+  var resp = await request({
+    url: '/dashboard/liaison_plan_actual/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function liaisonTypePowerScale() {
+  var resp = await request({
+    url: '/dashboard/liaison_type_power_scale/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function dashboardPanelGroup() {
+  var resp = await request({
+    url: '/dashboard/dashboard_panel_group/',
+    method: 'get'
+  })
+  return resp
+}
+
+export async function projectBugRate() {
+  var resp = await request({
+    url: '/dashboard/project_bug_rate/',
+    method: 'get'
+  })
+  return resp
+}

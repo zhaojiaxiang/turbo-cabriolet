@@ -87,7 +87,7 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '',
         component: () => import('@/views/workbench/index'),
         name: 'Workbench',
         meta: { title: '工作台', icon: 'el-icon-menu', noCache: true, affix: true }
@@ -99,7 +99,7 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'dashboard',
+        path: '',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: '仪表盘', icon: 'dashboard', noCache: true }

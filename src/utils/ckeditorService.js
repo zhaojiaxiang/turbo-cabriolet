@@ -11,7 +11,6 @@ class MyUploadAdapter {
   async upload() {
     const data = new FormData();
     data.append('file', await this.loader.file);
-    console.log(data);
     const res = await request({
       url: '/qa/image_upload/',
       method: 'post',

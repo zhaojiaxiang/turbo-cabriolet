@@ -144,7 +144,6 @@ export default {
       );
 
       var liaisons = [];
-      console.log(resp);
       liaisons = resp.data;
 
       for (var i in liaisons) {

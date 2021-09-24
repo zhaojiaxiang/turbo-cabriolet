@@ -349,9 +349,7 @@ export default {
     },
 
     async handleStatus(command) {
-      console.log(command.row.id);
       var get_resp = await getSingleALlLiaisonBySlipNo(command.row.fslipno)
-      console.log(get_resp);
 
       if (get_resp.result === 'OK') {
         var liaison = get_resp.data;

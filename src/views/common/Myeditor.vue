@@ -268,11 +268,7 @@ export default {
 
       fileForm.append('file', file);
 
-      console.log(fileForm);
-
       var resp = await store.dispatch('qa/fileUpload', fileForm);
-
-      console.log(resp);
 
       if (resp.result === 'OK') {
         this.$message.success('文件上传成功');

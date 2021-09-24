@@ -102,8 +102,6 @@ export default {
 
       var args = { 'id': this.qaheadid, 'data': batch_json }
 
-      console.log(args);
-
       var resp = await store.dispatch('qa/batchNewQaDetail', args)
 
       if (resp.result === 'OK') {

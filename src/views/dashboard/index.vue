@@ -1,23 +1,25 @@
 <template>
-  <div class="dashboard-container">
+  <div class="dashboard-editor-container">
+    <panel-group />
+
+    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+      <LiaisonPlanActualManPowerLineChart />
+    </el-row>
+
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <el-row>
-            <el-col :xs="12" :sm="12" :lg="12">
-              <el-input v-model="orderno" placeholder="订单号" clearable /></el-col>
-          </el-row>
-          <ProjectTestDetailChart ref="projectTestDetail" />
+          <LiaisonTypeScalePieChart />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <ProjectTestDetailChart />
+          <ProjectBugRatePieChart />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <ProjectTestDetailChart />
+          <LiaisonTypeManPowerBarChart />
         </div>
       </el-col>
     </el-row>
@@ -25,29 +27,27 @@
 </template>
 
 <script>
-import ProjectTestDetailChart from './components/ProjectTestDetailChart';
+import PanelGroup from './components/PanelGroup'
+import LiaisonPlanActualManPowerLineChart from './components/LiaisonPlanActualManPowerLineChart'
+import LiaisonTypeScalePieChart from './components/LiaisonTypeScalePieChart'
+import ProjectBugRatePieChart from './components/ProjectBugRatePieChart'
+import LiaisonTypeManPowerBarChart from './components/LiaisonTypeManPowerBarChart'
+
 export default {
-  name: 'Dashboard',
-  components: { ProjectTestDetailChart },
-  data() {
-    return {
-      orderno: ''
-    };
-  },
-  watch: {
-    orderno(newval) {
-      if (newval) {
-        this.$refs.projectTestDetail.initChart(newval)
-      }
-    }
+  name: 'DashboardAdmin',
+  components: {
+    PanelGroup,
+    LiaisonPlanActualManPowerLineChart,
+    LiaisonTypeScalePieChart,
+    ProjectBugRatePieChart,
+    LiaisonTypeManPowerBarChart
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-.dashboard-container {
-  padding: 32px;
-  background-color: rgb(240, 242, 245);
+.dashboard-editor-container {
+  padding: 4px 32px 4px 32px;
   position: relative;
 
   .chart-wrapper {
@@ -57,7 +57,7 @@ export default {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width:1024px) {
   .chart-wrapper {
     padding: 8px;
   }

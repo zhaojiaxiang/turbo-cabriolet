@@ -124,7 +124,6 @@ const actions = {
   updateUserPassword({ commit }, password_info) {
     return new Promise((resolve, reject) => {
       updateUserPassword(password_info).then(response => {
-        console.log(response)
         resolve(response)
       }).catch(error => {
         reject(error)
