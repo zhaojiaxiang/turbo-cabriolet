@@ -8,7 +8,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            参与项目数
+            我的参与项目数
           </div>
           <count-to :start-val="0" :end-val="data.project" :duration="20" class="card-panel-num" />
         </div>
@@ -22,7 +22,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            MCL测试数
+            我的MCL测试数
           </div>
           <count-to :start-val="0" :end-val="data.mcl" :duration="100" class="card-panel-num" />
         </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            PCL测试数
+            我的PCL测试数
           </div>
           <count-to :start-val="0" :end-val="data.pcl" :duration="100" class="card-panel-num" />
         </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            测试NG率(%)
+            我的测试NG率(%)
           </div>
           <h3 class="card-panel-num vertical" v-text="data.ng" />
         </div>

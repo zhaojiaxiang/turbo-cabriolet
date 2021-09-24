@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 import resize from '../mixins/resize';
 import { getOrganization } from '@/api/common';
 import { dashboardLiaisons, dashboardGroupLiaisons } from '@/api/dashboard';
