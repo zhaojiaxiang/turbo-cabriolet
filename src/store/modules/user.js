@@ -87,11 +87,11 @@ const actions = {
         })
         data.roles = roles_array
 
-        const { username, email, slmsname, roles, group, organization, name, avatar, fmaildays } = data
-        // roles must be a non-empty array
-        if (!data.roles || data.roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
+        const { username, email, slmsname, group, organization, name, avatar, fmaildays } = data
+        // // roles must be a non-empty array
+        // if (!data.roles || data.roles.length <= 0) {
+        //   reject('getInfo: roles must be a non-null array!')
+        // }
 
         commit('SET_NAME', name)
         commit('SET_USERNAME', username)
@@ -99,7 +99,8 @@ const actions = {
         commit('SET_SLIMS_NAME', slmsname)
         commit('SET_GROUP', group.name)
         commit('SET_ORGANIZATION', organization.name)
-        commit('SET_ROLES', roles)
+        // 暂时写死，后续在做权限相关的修改
+        commit('SET_ROLES', ['admin'])
         commit('SET_AVATAR', avatar)
         commit('SET_USER_MAIL_DAYS', fmaildays)
         resolve(data)
