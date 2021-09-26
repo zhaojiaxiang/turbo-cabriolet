@@ -6,6 +6,7 @@ const chartRouter = {
   path: '/chars',
   component: Layout,
   name: 'Charts',
+  alwaysShow: true,
   meta: {
     title: '图表统计',
     icon: 'chart'
@@ -16,12 +17,6 @@ const chartRouter = {
       name: 'LiaisonChart',
       component: () => import('@/views/charts/components/LiaisonsChart'),
       meta: { title: '联络票' }
-    },
-    {
-      path: 'temp',
-      name: 'temp',
-      component: () => import('@/views/charts/components/LiaisonsChart'),
-      meta: { title: '占位符' }
     }
   ]
 };
