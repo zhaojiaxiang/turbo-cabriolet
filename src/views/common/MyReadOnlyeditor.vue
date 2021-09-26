@@ -55,12 +55,9 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import BlockToolbar from '@ckeditor/ckeditor5-ui/src/toolbar/block/blocktoolbar';
-import Indent from '@ckeditor/ckeditor5-indent/src/indent';
-import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
 
 export default {
   components: {
-    // Use the <ckeditor> component in this view.
     ckeditor: CKEditor.component
   },
   props: {
@@ -99,9 +96,7 @@ export default {
           TodoList,
           TextTransformation,
           Table,
-          TableToolbar,
-          Indent,
-          IndentBlock
+          TableToolbar
         ]
       }
     };

@@ -4,7 +4,7 @@
       <el-form ref="form">
         <el-form-item>
           <Myeditor
-            :editor-data="contentText"
+            :editordata="contentText"
             :isdisable="isdisable"
             @handleContentText="updateQaCodeReview"
             @receivedata="receivedata"

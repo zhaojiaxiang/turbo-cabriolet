@@ -5,7 +5,7 @@
         <ckeditor
           id="editor"
           :editor="editor"
-          :value="content_text"
+          :value="contenttext"
           :config="editorConfig"
           @ready="onReady"
         />
@@ -45,17 +45,13 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import BlockToolbar from '@ckeditor/ckeditor5-ui/src/toolbar/block/blocktoolbar';
-import Indent from '@ckeditor/ckeditor5-indent/src/indent';
-import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
 
 export default {
   components: {
-    // Use the <ckeditor> component in this view.
     ckeditor: CKEditor.component
   },
   props: {
-    // eslint-disable-next-line vue/prop-name-casing
-    content_text: {
+    contenttext: {
       type: String,
       required: true
     }
@@ -90,9 +86,7 @@ export default {
           TodoList,
           TextTransformation,
           Table,
-          TableToolbar,
-          Indent,
-          IndentBlock
+          TableToolbar
         ]
       }
     };

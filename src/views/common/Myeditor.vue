@@ -6,7 +6,7 @@
           <ckeditor
             id="editor"
             :editor="editor"
-            :value="editorData"
+            :value="editordata"
             :config="editorConfig"
             @ready="onReady"
             @input="receivedata"
@@ -76,19 +76,16 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import BlockToolbar from '@ckeditor/ckeditor5-ui/src/toolbar/block/blocktoolbar';
-import Indent from '@ckeditor/ckeditor5-indent/src/indent';
-import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
 
 import MyUploadAdapter from '@/utils/ckeditorService';
 import store from '@/store';
 
 export default {
   components: {
-    // Use the <ckeditor> component in this view.
     ckeditor: CKEditor.component
   },
   props: {
-    editorData: {
+    editordata: {
       type: String,
       required: true
     },
@@ -129,9 +126,7 @@ export default {
           TodoList,
           TextTransformation,
           Table,
-          TableToolbar,
-          Indent,
-          IndentBlock
+          TableToolbar
         ],
 
         toolbar: {

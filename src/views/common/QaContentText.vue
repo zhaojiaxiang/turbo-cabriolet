@@ -2,7 +2,7 @@
   <div>
     <Myeditor
       v-show="isshow"
-      :editor-data="content_text"
+      :editordata="content_text"
       :isdisable="isdisable"
       @handleContentText="submitContentText"
       @receivedata="receivedata"

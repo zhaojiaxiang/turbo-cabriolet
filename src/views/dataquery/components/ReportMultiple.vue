@@ -105,7 +105,7 @@
               style="margin-top: 10px"
             >
               <span>{{ index1 + 1 }} . {{ item.content }}</span>
-              <DisplayEditor :content_text="item.content_text" />
+              <DisplayEditor :contenttext="item.content_text" />
             </div>
           </div>
           <el-divider />
