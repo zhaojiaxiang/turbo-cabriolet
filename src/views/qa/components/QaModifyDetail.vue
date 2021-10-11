@@ -29,6 +29,30 @@
           <el-radio-button label="1.2" />
         </el-radio-group>
       </el-form-item>
+      <el-form-item prop="ftargettest" label="目标测试数(不含回归):">
+        <el-input
+          v-model="form.ftargettest"
+          placeholder="目标测试数"
+          type="number"
+          min="0"
+        />
+      </el-form-item>
+      <el-form-item prop="ftargetregtest" label="目标回归测试数:">
+        <el-input
+          v-model="form.ftargetregtest"
+          placeholder="目标回归测试数"
+          type="number"
+          min="0"
+        />
+      </el-form-item>
+      <el-form-item prop="ftargetng" label="目标测试NG数:">
+        <el-input
+          v-model="form.ftargetng"
+          placeholder="目标测试NG数"
+          type="number"
+          min="0"
+        />
+      </el-form-item>
       <el-form-item prop="fselflevel" label="自我评价难易等级:">
         <el-select v-model="form.fselflevel" placeholder="请选择难易等级">
           <el-option label="01" value="01" />
@@ -73,7 +97,10 @@ export default {
         fttlcodelines: '',
         fmodifiedlines: '',
         fcomplexity: '',
-        fselflevel: ''
+        fselflevel: '',
+        ftargettest: '',
+        ftargetregtest: '',
+        ftargetng: ''
       },
       rules: {
         fttlcodelines: [
