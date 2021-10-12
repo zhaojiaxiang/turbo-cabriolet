@@ -62,6 +62,12 @@
       <el-table-column type="selection" width="40" />
       <el-table-column label="序号" type="index" width="60" />
       <el-table-column
+        prop="fsortrule"
+        label="排序"
+        min-width="70"
+        show-overflow-tooltip
+      />
+      <el-table-column
         prop="fclass1"
         label="分类"
         min-width="100"
