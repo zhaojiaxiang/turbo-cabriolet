@@ -6,7 +6,7 @@
       img-format="png"
       :height="300"
       :width="300"
-      url="/api/account/update_avatar/"
+      :url="uploadUrl"
       :headers="headers"
       method="POST"
       field="avatar"
@@ -31,6 +31,7 @@ export default {
       imgDataUrl: '',
       show: false,
       size: 2.1,
+      uploadUrl: process.env.VUE_APP_BASE_API + '/account/update_avatar/',
       headers: { Authorization: 'JWT ' + getToken() }
 
     }

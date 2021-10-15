@@ -73,40 +73,42 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.user_id).then(response => {
-        const { data } = response
+      if (state.user_id) {
+        getInfo(state.user_id).then(response => {
+          const { data } = response
 
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
+          if (!data) {
+            reject('Verification failed, please Login again.')
+          }
 
-        var roles_array = []
+          var roles_array = []
 
-        data.roles.forEach((element) => {
-          roles_array.push(element.name)
+          data.roles.forEach((element) => {
+            roles_array.push(element.name)
+          })
+          data.roles = roles_array
+
+          const { username, email, slmsname, group, organization, name, avatar, fmaildays } = data
+          // // roles must be a non-empty array
+          // if (!data.roles || data.roles.length <= 0) {
+          //   reject('getInfo: roles must be a non-null array!')
+          // }
+
+          commit('SET_NAME', name)
+          commit('SET_USERNAME', username)
+          commit('SET_EMAIL', email)
+          commit('SET_SLIMS_NAME', slmsname)
+          commit('SET_GROUP', group.name)
+          commit('SET_ORGANIZATION', organization.name)
+          // 暂时写死，后续在做权限相关的修改
+          commit('SET_ROLES', ['admin'])
+          commit('SET_AVATAR', avatar)
+          commit('SET_USER_MAIL_DAYS', fmaildays)
+          resolve(data)
+        }).catch(error => {
+          reject(error)
         })
-        data.roles = roles_array
-
-        const { username, email, slmsname, group, organization, name, avatar, fmaildays } = data
-        // // roles must be a non-empty array
-        // if (!data.roles || data.roles.length <= 0) {
-        //   reject('getInfo: roles must be a non-null array!')
-        // }
-
-        commit('SET_NAME', name)
-        commit('SET_USERNAME', username)
-        commit('SET_EMAIL', email)
-        commit('SET_SLIMS_NAME', slmsname)
-        commit('SET_GROUP', group.name)
-        commit('SET_ORGANIZATION', organization.name)
-        // 暂时写死，后续在做权限相关的修改
-        commit('SET_ROLES', ['admin'])
-        commit('SET_AVATAR', avatar)
-        commit('SET_USER_MAIL_DAYS', fmaildays)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+      }
     })
   },
 

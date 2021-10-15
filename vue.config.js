@@ -35,17 +35,17 @@ module.exports = {
     port: port,
     disableHostCheck: true,
     proxy: {
-      '/api': {
+      '/zh-hans/api': {
         target: 'http://127.0.0.1:8000/',
         pathRewrite: {
-          '^/api': '/api'
+          '^/zh-hans/api': '/zh-hans/api'
         }
       },
       '/files': {
         target: 'http://127.0.0.1:8000/',
         changeOrigin: true,
         pathRewrite: {
-          '^/files': '/api/qa/files'
+          '^/files': '/zh-hans/api/qa/files'
         }
       },
       '/media': {
