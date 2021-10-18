@@ -1,5 +1,5 @@
 import { login, getInfo, updateEmailDays, updateUserPassword } from '@/api/user'
-import { getToken, setToken, removeToken, getUserId, setUserId } from '@/utils/auth'
+import { getToken, setToken, removeToken, getUserId, setUserId, setUserName } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const state = {
@@ -93,7 +93,7 @@ const actions = {
           // if (!data.roles || data.roles.length <= 0) {
           //   reject('getInfo: roles must be a non-null array!')
           // }
-
+          setUserName(username)
           commit('SET_NAME', name)
           commit('SET_USERNAME', username)
           commit('SET_EMAIL', email)

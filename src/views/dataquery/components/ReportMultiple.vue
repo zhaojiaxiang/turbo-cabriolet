@@ -20,6 +20,15 @@
           >打印PDF</el-button>
         </el-tooltip>
         <el-button disabled icon="el-icon-download">保存Excel</el-button>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="自定义当前报表标题"
+          placement="bottom"
+        >
+          <el-input v-model="title" clearable placeholder="自定义报表标题" style="margin-left:10px; width:200px" />
+        </el-tooltip>
+
         <div style="float:right">
           <el-tooltip
             class="item"
@@ -52,7 +61,7 @@
       </div>
       <div id="div_print" style="padding-left:42px;padding-right:42px">
         <div style="text-align:center">
-          <h4>单体测试计划书兼报告书</h4>
+          <h4> {{ title }}</h4>
         </div>
 
         <div
@@ -124,6 +133,7 @@ export default {
   },
   data() {
     return {
+      title: '单体测试计划书兼报告书',
       order_no: '',
       multiple_slip: '',
       fullscreenLoading: false,

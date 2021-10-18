@@ -117,6 +117,14 @@
             icon="el-icon-delete"
             @click="deleteInitLiaison(scope.row.id, scope.row.fslipno)"
           />
+          <el-link
+            v-show=" true ? (scope.row.fstatus == '已完成' || scope.row.fstatus == '已发布') : (scope.row.fstatus != '已完成' & scope.row.fstatus != '已发布') "
+            style="margin-left: 40px"
+            type="primary"
+            :underline="false"
+            icon="el-icon-tickets"
+            @click="openQaList(scope.row.fslipno)"
+          />
         </template>
       </el-table-column>
     </el-table>
@@ -208,6 +216,20 @@ export default {
     },
     filterType(value, row) {
       return row.ftype === value;
+    },
+
+    canOpenReport() {
+      if (status === '已完成') {
+        return true;
+      } else if (status === '已发布') {
+        return true;
+      }
+      return false;
+    },
+
+    openQaList(slipno) {
+      // 打开报表
+      this.$router.push({ name: 'ReportSingle', query: { slipno: slipno }});
     },
 
     async refreshLiaisons() {

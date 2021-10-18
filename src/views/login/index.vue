@@ -53,15 +53,16 @@
 </template>
 
 <script>
-
+import { getUserName } from '@/utils/auth'
 export default {
   name: 'Login',
   data() {
     return {
       loginForm: {
-        username: '',
+        username: this.last_login_username,
         password: ''
       },
+      last_login_username: '',
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
@@ -83,6 +84,7 @@ export default {
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
+    this.last_login_username = getUserName()
   },
   mounted() {
     if (this.loginForm.username === '') {
