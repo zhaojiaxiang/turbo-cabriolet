@@ -18,6 +18,12 @@
       >确 定</el-button>
       <el-button @click="dialogFormVisible = false">取 消</el-button>
     </div>
+    <el-descriptions title="单体测试批量上传格式(Excel中复制)" direction="vertical" :column="4" border>
+      <el-descriptions-item label="是否回归(必输项)">N (一个字符，只能 Y 或者 N)</el-descriptions-item>
+      <el-descriptions-item label="测试用例(必输项)">这是一个测试用例</el-descriptions-item>
+      <el-descriptions-item label="分类">新建</el-descriptions-item>
+      <el-descriptions-item label="排序规则">001 (字符串即可)</el-descriptions-item>
+    </el-descriptions>
   </el-dialog>
 </template>
 

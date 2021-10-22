@@ -22,6 +22,12 @@
       >确 定</el-button>
       <el-button @click="dialogFormVisible = false">取 消</el-button>
     </div>
+    <el-descriptions title="结合测试批量上传格式(Excel中复制)" direction="vertical" :column="4" border>
+      <el-descriptions-item label="分类1(必输项)">MO</el-descriptions-item>
+      <el-descriptions-item label="分类2(必输项)">新建</el-descriptions-item>
+      <el-descriptions-item label="测试用例(必输项)">这是一个测试用例</el-descriptions-item>
+      <el-descriptions-item label="排序规则">001(字符串即可)</el-descriptions-item>
+    </el-descriptions>
   </el-dialog>
 </template>
 
@@ -119,7 +125,10 @@ export default {
           };
           await store.dispatch('qa/refreshPclListViaClass', args2);
         } else {
-          await store.dispatch('qa/refreshPclQaClass1', this.$route.query.qahf_id);
+          await store.dispatch(
+            'qa/refreshPclQaClass1',
+            this.$route.query.qahf_id
+          );
         }
         this.dialogFormVisible = false;
         this.fullscreenLoading = false;
