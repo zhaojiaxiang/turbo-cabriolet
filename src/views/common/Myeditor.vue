@@ -253,12 +253,12 @@ export default {
       this.outEditorData = e;
     },
     async beforeFileUpload(file) {
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const isLt2M = file.size / 1024 / 1024 < 5;
 
       const fileForm = new FormData();
 
       if (!isLt2M) {
-        this.$message.error('上传文件大小不能超过 2MB!');
+        this.$message.error('上传文件大小不能超过 5MB!');
       }
 
       fileForm.append('file', file);
