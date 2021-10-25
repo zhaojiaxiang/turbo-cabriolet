@@ -21,7 +21,7 @@
           <el-upload
             class="upload-demo"
             :before-upload="beforeFileUpload"
-            action="/api/file_upload/"
+            action="/zh-hans/api/qa/file_upload/"
           >
             <el-button
               v-show="!isdisable"
@@ -264,12 +264,11 @@ export default {
       fileForm.append('file', file);
 
       var resp = await store.dispatch('qa/fileUpload', fileForm);
-
       if (resp.result === 'OK') {
         this.$message.success('文件上传成功');
       }
 
-      this.editorData = this.outEditorData + resp.data.path;
+      this.receivedata(this.outEditorData + resp.data.path)
     },
     onReady(editor) {
       // 自定义上传图片插件
