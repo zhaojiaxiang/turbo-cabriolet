@@ -166,7 +166,7 @@
           background
           :current-page="qa_mcl_current_page"
           :page-sizes="[15, 20, 30, 50, 100]"
-          :page-size="20"
+          :page-size="qa_mcl_page_size"
           layout="total, sizes, prev, pager, next, jumper"
           :total="qa_mcl_count"
           @size-change="handleSizeChange"
@@ -211,10 +211,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['qa_mcl_list', 'qa_mcl_current_page', 'qa_mcl_count'])
+    ...mapGetters(['qa_mcl_list', 'qa_mcl_current_page', 'qa_mcl_count', 'qa_mcl_page_size'])
   },
   created() {
     this.qahf_id = this.$route.query.qahf_id;
+    store.commit('qa/SET_CURRENT_PAGE', 1);
     this.getQaHead()
     this.getQaDetailByQaHeadViaPagination();
   },
