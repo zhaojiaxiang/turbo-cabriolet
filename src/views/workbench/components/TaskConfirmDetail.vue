@@ -62,7 +62,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="fapproval" label="状态" width="70" />
-      <el-table-column prop="fcontent" label="测试用例" show-overflow-tooltip />
+      <el-table-column prop="fcontent" label="测试用例" />
       <el-table-column prop="ftestdte" label="测试日" width="100" />
       <el-table-column prop="ftestusr" label="测试者" width="100" />
       <el-table-column

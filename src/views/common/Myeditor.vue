@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col>
-        <div style="margin-right:40px; margin-left:20px">
+        <div>
           <ckeditor
             id="editor"
             :editor="editor"

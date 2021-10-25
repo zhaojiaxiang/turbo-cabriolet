@@ -201,6 +201,12 @@
             :disabled="isCanModify"
           />
         </el-form-item>
+        <el-form-item label="问题分析" size="medium">
+          <el-input
+            v-model="form.fanalyse"
+            type="textarea"
+          />
+        </el-form-item>
         <el-form-item label="计划开始" required>
           <el-col :span="6">
             <el-form-item prop="fplnstart">
@@ -287,6 +293,7 @@ export default {
         fleader: '',
         fbrief: '',
         fcontent: '',
+        fanalyse: '',
         fplnstart: '',
         fplnend: '',
         fcreateusr: '',
@@ -443,6 +450,7 @@ export default {
         this.form.fodrno = sir_json.fodrno;
         this.form.fbrief = sir_json.fbrief;
         this.form.fcontent = sir_json.fcontent;
+        this.form.fanalyse = sir_json.fanalyse;
         this.form.fsirno = sir_json.fsirno;
 
         this.isCanModify = true;

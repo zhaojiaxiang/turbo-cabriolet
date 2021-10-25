@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="div-container">
+    <h3>{{ qadf.fcontent }}</h3>
     <Myeditor
       v-show="isshow"
       :editordata="content_text"
@@ -115,4 +116,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.div-container {
+  padding: 4px 32px 4px 32px;
+  position: relative;
+}
+</style>
