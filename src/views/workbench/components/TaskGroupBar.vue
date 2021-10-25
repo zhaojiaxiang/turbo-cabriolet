@@ -7,7 +7,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            待测试
+            测试
           </div>
           <count-to :start-val="0" :end-val="task_bar[0].mcl + task_bar[0].pcl" :duration="1" class="card-panel-num" />
         </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            待审核
+            审核
           </div>
           <count-to :start-val="0" :end-val="task_bar[0].approval" :duration="1" class="card-panel-num" />
         </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            待确认
+            确认
           </div>
           <count-to :start-val="0" :end-val="task_bar[0].confirm" :duration="1" class="card-panel-num" />
         </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            待发布
+            发布
           </div>
           <count-to :start-val="0" :end-val="task_bar[0].release" :duration="1" class="card-panel-num" />
         </div>

@@ -165,6 +165,7 @@ export default {
     ])
   },
   mounted: function() {
+    store.commit('workbench/SET_SLIP_CURRENT_PAGE', 1);
     this.refreshLiaisons();
   },
   methods: {

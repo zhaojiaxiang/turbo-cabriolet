@@ -53,7 +53,9 @@ import EssentialsPlugin from '@ckeditor/ckeditor5-essentials/src/essentials';
 import BoldPlugin from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import ItalicPlugin from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import CodePlugin from '@ckeditor/ckeditor5-basic-styles/src/code';
-import LinkPlugin from '@ckeditor/ckeditor5-link/src/link';
+// import LinkPlugin from '@ckeditor/ckeditor5-link/src/link';
+import Link from '@ckeditor/ckeditor5-link/src/link';
+import AutoLink from '@ckeditor/ckeditor5-link/src/autolink';
 import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 
@@ -107,7 +109,8 @@ export default {
           CodePlugin,
           BoldPlugin,
           ItalicPlugin,
-          LinkPlugin,
+          // LinkPlugin,
+          Link, AutoLink,
           ParagraphPlugin,
           Heading,
           Image,
