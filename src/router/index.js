@@ -90,7 +90,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/index'),
         name: 'Workbench',
-        meta: { title: '工作台', icon: 'el-icon-menu', noCache: true, affix: true }
+        meta: { title: '工作台', icon: 'el-icon-menu', noCache: false, affix: true }
       }
     ]
   },
@@ -218,7 +218,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/common/QaContentText'),
         name: 'QaContentText',
-        meta: { title: '贴图', icon: '', noCache: true }
+        meta: { title: '贴图', icon: '', noCache: false }
       }
     ]
   },
@@ -231,7 +231,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskTest'),
         name: 'TaskTest',
-        meta: { title: '待测试', icon: '', noCache: true }
+        meta: { title: '测试', icon: '', noCache: true }
       }
     ]
   },
@@ -283,7 +283,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskApproval'),
         name: 'TaskApproval',
-        meta: { title: '待审核', icon: '', noCache: true }
+        meta: { title: '审核', icon: '', noCache: true }
       }
     ]
   },
@@ -296,7 +296,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskApprovalDetail'),
         name: 'TaskApprovalDetail',
-        meta: { title: '待审核-明细', icon: '', noCache: true }
+        meta: { title: '审核-明细', icon: '', noCache: true }
       }
     ]
   },
@@ -309,7 +309,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskConfirm'),
         name: 'TaskConfirm',
-        meta: { title: '待确认', icon: '', noCache: true }
+        meta: { title: '确认', icon: '', noCache: true }
       }
     ]
   },
@@ -322,7 +322,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskConfirmDetail'),
         name: 'TaskConfirmDetail',
-        meta: { title: '待确认-明细', icon: '', noCache: true }
+        meta: { title: '确认-明细', icon: '', noCache: true }
       }
     ]
   },
@@ -335,7 +335,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskRelease'),
         name: 'TaskRelease',
-        meta: { title: '待发布', icon: '', noCache: true }
+        meta: { title: '发布', icon: '', noCache: true }
       }
     ]
   },

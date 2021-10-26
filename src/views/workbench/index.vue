@@ -36,7 +36,7 @@ import SlipNoModify from './components/SlipNoModify';
 import store from '@/store';
 
 export default {
-  name: 'WorkBench',
+  name: 'Workbench',
   components: {
     TaskGroupBar,
     ProjectItem,

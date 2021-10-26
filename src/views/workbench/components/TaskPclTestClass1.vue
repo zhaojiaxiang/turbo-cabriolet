@@ -41,10 +41,13 @@
             <el-button
               v-show="isCanSubmit()"
               type="primary"
+              plain
               @click="resultSubmit()"
             >提交结果</el-button>
             <el-button
               v-show="isCanRollback()"
+              type="warning"
+              plain
               @click="resultRollback()"
             >结果撤回</el-button>
           </el-button-group>
@@ -144,10 +147,11 @@ export default {
       }
 
       for (var i in this.qa_pcl_class1_list) {
-        if (!this.qa_pcl_class1_list[i].fresult) {
+        console.log(this.qa_pcl_class1_list[i]);
+        if (this.qa_pcl_class1_list[i].test_cnt !== this.qa_pcl_class1_list[i].tested_cnt + this.qa_pcl_class1_list[i].canceled_cnt) {
           return false;
         }
-        if (this.qa_pcl_class1_list[i].fresult === 'NG') {
+        if (this.qa_pcl_class1_list[i].ng !== 0) {
           return false;
         }
       }
@@ -193,6 +197,30 @@ export default {
 
     batchAdd() {
       this.$refs.QaBatchNewForPcl.handleDialog(this.qahead.id);
+    },
+
+    async resultSubmit() {
+      this.qahead.fstatus = '3';
+
+      var args = { 'id': this.qahead.id, 'data': this.qahead }
+
+      var resp = await store.dispatch('qa/updateQaHead', args);
+
+      if (resp.result === 'OK') {
+        this.$message.success('测试结果提交成功');
+        this.refreshQaList();
+      }
+    },
+
+    async resultRollback() {
+      this.qahead.fstatus = '2';
+      var args = { 'id': this.qahead.id, 'data': this.qahead }
+      var resp = await store.dispatch('qa/updateQaHead', args);
+
+      if (resp.result === 'OK') {
+        this.$message.success('测试结果撤回成功');
+        this.refreshQaList();
+      }
     },
 
     async batchDeleteQaDetail() {

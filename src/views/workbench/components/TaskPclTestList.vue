@@ -3,7 +3,9 @@
     <el-row class="row-top">
       <el-col :span="24">
         <div style="text-align:left; " class="vertical">
-          <h4 style="margin:0 auto;">分类1：{{ class1 }}  分类2：{{ class2 }}</h4>
+          <h4 style="margin:0 auto;">
+            分类1：{{ class1 }} 分类2：{{ class2 }}
+          </h4>
         </div>
       </el-col>
     </el-row>
@@ -41,10 +43,13 @@
             <el-button
               v-show="isCanSubmit()"
               type="primary"
+              plain
               @click="resultSubmit()"
             >提交结果</el-button>
             <el-button
               v-show="isCanRollback()"
+              plain
+              type="warning"
               @click="resultRollback()"
             >结果撤回</el-button>
           </el-button-group>
@@ -160,6 +165,7 @@ import QaSingleModifyForPcl from '@/views/qa/components/QaSingleModifyForPcl';
 import store from '@/store';
 import { mapGetters } from 'vuex';
 export default {
+  name: 'TaskPclTestList',
   components: {
     QaPclTargetActual,
     QaSingleNewForPcl,
@@ -186,7 +192,7 @@ export default {
     this.class1 = this.$route.query.class1;
     this.class2 = this.$route.query.class2;
     this.refreshQaList();
-    this.getQaHead()
+    this.getQaHead();
     this.loading = false;
   },
 
@@ -256,7 +262,7 @@ export default {
 
     isCanBatchDelete() {
       if ((this.qahead.fstatus === '1') & (this.qa_pcl_list.length > 0)) {
-        var seleted = this.$refs.multipleTable.selection
+        var seleted = this.$refs.multipleTable.selection;
         if (seleted.length > 0) {
           return false;
         }
@@ -318,7 +324,7 @@ export default {
           message: '删除成功！',
           type: 'success'
         });
-        this.refreshQaList()
+        this.refreshQaList();
       }
     },
 
@@ -361,12 +367,12 @@ export default {
     },
 
     async updateResult(qadetail_id, qadetailInfo) {
-      var data = { 'id': qadetail_id, 'data': qadetailInfo }
-      var resp = await store.dispatch('qa/updateQaDetailResult', data)
+      var data = { id: qadetail_id, data: qadetailInfo };
+      var resp = await store.dispatch('qa/updateQaDetailResult', data);
 
       if (resp.result === 'OK') {
         this.$message.success('测试项更新成功');
-        this.refreshQaList()
+        this.refreshQaList();
       }
     },
 
@@ -388,7 +394,7 @@ export default {
                 message: '批量删除成功！',
                 type: 'success'
               });
-              this.refreshQaList()
+              this.refreshQaList();
             }
             this.fullscreenLoading = false;
           }
@@ -401,6 +407,30 @@ export default {
         });
     },
 
+    async resultSubmit() {
+      this.qahead.fstatus = '3';
+
+      var args = { 'id': this.qahead.id, 'data': this.qahead }
+
+      var resp = await store.dispatch('qa/updateQaHead', args);
+
+      if (resp.result === 'OK') {
+        this.$message.success('测试结果提交成功');
+        this.refreshQaList();
+      }
+    },
+
+    async resultRollback() {
+      this.qahead.fstatus = '2';
+      var args = { 'id': this.qahead.id, 'data': this.qahead }
+      var resp = await store.dispatch('qa/updateQaHead', args);
+
+      if (resp.result === 'OK') {
+        this.$message.success('测试结果撤回成功');
+        this.refreshQaList();
+      }
+    },
+
     async getQaHead() {
       var resp = await store.dispatch('qa/getQaHead', this.id);
       this.qahead = resp.data;
@@ -409,6 +439,7 @@ export default {
     async refreshQaList() {
       var args = { id: this.id, class1: this.class1, class2: this.class2 };
       await store.dispatch('qa/refreshPclListViaClass', args);
+      await store.dispatch('qa/refreshPclTargetActual', this.id)
     }
   }
 };

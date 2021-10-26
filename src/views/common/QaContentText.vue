@@ -22,6 +22,7 @@ import {
   approvalQaDetailContentText
 } from '@/api/qa';
 export default {
+  name: 'QaContentText',
   components: {
     Myeditor,
     MyReadOnlyeditor
