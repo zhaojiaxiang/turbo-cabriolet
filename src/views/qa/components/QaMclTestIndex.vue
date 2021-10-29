@@ -8,6 +8,7 @@
 import QaMclTestList from './QaMclTestList';
 import store from '@/store';
 export default {
+  name: 'QAMclTestList',
   components: {
     QaMclTestList
   },

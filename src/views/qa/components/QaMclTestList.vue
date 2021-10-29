@@ -1,7 +1,10 @@
 <template>
   <div>
     <el-row class="row-bottom">
-      <el-col :xs="24" :sm="24" :lg="24">
+      <el-col :xs="6" :sm="6" :lg="6">
+        <h3>测试对象：{{ qahead.fobjectid }}</h3>
+      </el-col>
+      <el-col :xs="18" :sm="18" :lg="18">
         <QaMclTargetActual />
       </el-col>
     </el-row>
@@ -128,7 +131,7 @@
           </el-dropdown>
         </template>
       </el-table-column>
-      <el-table-column label="贴图" fixed="right" width="100">
+      <el-table-column label="贴图" fixed="right" width="90">
         <template slot-scope="scope">
           <el-link
             v-if="isCanImage(scope.row.test_tag)"
@@ -213,7 +216,7 @@ export default {
   computed: {
     ...mapGetters(['qa_mcl_list', 'qa_mcl_current_page', 'qa_mcl_count', 'qa_mcl_page_size'])
   },
-  created() {
+  mounted() {
     this.qahf_id = this.$route.query.qahf_id;
     store.commit('qa/SET_CURRENT_PAGE', 1);
     this.getQaHead()

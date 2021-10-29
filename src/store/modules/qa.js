@@ -87,6 +87,13 @@ const mutations = {
     }
     state.qa_mcl_list = data;
   },
+  REFRESH_QA_MCL_LIST(state, data) {
+    for (var i in data) {
+      if (data[i].id === state.qa_mcl_list[1].id) {
+        state.qa_mcl_list[1].test_tag = data[i].test_tag
+      }
+    }
+  },
   SET_MCL_TARGET_ACTUAL(state, data) {
     state.qa_mcl_target_actual = []
     state.qa_mcl_target_actual.push(data)
@@ -221,6 +228,25 @@ const actions = {
           commit('SET_PAGE_COUNT', pages)
           commit('SET_COUNT', count)
           store.dispatch('qa/refreshMclTargetActual', id)
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+
+  refreshQaDetailByQaHeadViaPagination({ commit }, id) {
+    var page = store.getters.qa_mcl_current_page
+    var size = store.getters.qa_mcl_page_size
+    return new Promise((resolve, reject) => {
+      getQaDetailByQaHeadViaPagination(size, page, id)
+        .then(response => {
+          const { data } = response
+          const { results } = data
+
+          commit('SET_QA_MCL_LIST', results)
+
           resolve(response)
         })
         .catch(error => {

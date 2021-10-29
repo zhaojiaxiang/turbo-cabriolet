@@ -12,8 +12,12 @@
     </el-row>
 
     <el-row class="row-top">
-      <el-col :span="24">
+      <el-col :span="12">
+        <h3>{{ qahead.fslipno }} - {{ qahead.fobjectid }}</h3>
+      </el-col>
+      <el-col :span="12">
         <div style="text-align:right">
+          <el-link style="margin-right:10px" type="primary" :underline="false" @click="openCodeReview(qahead.fslipno, qahead.fobjectid, qahead.id)">代码Review</el-link>
           <el-button-group>
             <el-button
               v-show="isCanConfirm()"
@@ -99,7 +103,7 @@
     </el-table>
 
     <TaskConfirmResult ref="QaConfirm" @confirmed="confirmed()" />
-
+    <QaCodeReview ref="QaCodeReview" :isdisable="true" />
     <el-backtop target=".goTop" :bottom="100">
       <i class="el-icon-caret-top" />
     </el-backtop>
@@ -112,11 +116,13 @@ import TaskConfirmResult from './TaskConfirmResult';
 import store from '@/store';
 import QaMclTargetActual from '@/views/qa/components/QaMclTargetActual';
 import QaPclTargetActual from '@/views/qa/components/QaPclTargetActual';
+import QaCodeReview from '@/views/qa/components/QaCodeReview';
 export default {
   components: {
     TaskConfirmResult,
     QaMclTargetActual,
-    QaPclTargetActual
+    QaPclTargetActual,
+    QaCodeReview
   },
   data() {
     return {
@@ -234,6 +240,10 @@ export default {
 
     filterResult(value, row) {
       return row.fresult === value;
+    },
+
+    openCodeReview(slipno, objectid, id) {
+      this.$refs.QaCodeReview.handleDialog(slipno, objectid, id);
     },
 
     async getQaHead() {

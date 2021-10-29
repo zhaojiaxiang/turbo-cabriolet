@@ -22,7 +22,6 @@
       <el-col :span="12">
         <div>
           <el-button
-            v-loading.fullscreen.lock="fullscreenLoading"
             type="danger"
             :disabled="isCanBatchDelete()"
             @click="batchDeleteQaDetail()"
@@ -186,7 +185,7 @@ export default {
   computed: {
     ...mapGetters(['qa_pcl_list'])
   },
-  created: async function() {
+  mounted: async function() {
     this.loading = true;
     this.id = this.$route.query.qahf_id;
     this.class1 = this.$route.query.class1;
@@ -384,7 +383,6 @@ export default {
       })
         .then(async action => {
           if (action === 'confirm') {
-            this.fullscreenLoading = true;
             var selectData = this.$refs.multipleTable.selection;
             if (selectData.length > 0) {
               for (var i in selectData) {
@@ -396,7 +394,6 @@ export default {
               });
               this.refreshQaList();
             }
-            this.fullscreenLoading = false;
           }
         })
         .catch(() => {

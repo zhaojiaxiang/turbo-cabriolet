@@ -289,3 +289,10 @@ export async function getPclDetailViaClass(qahf, class1, class2) {
   return resp;
 }
 
+export async function judgeTestType(id) {
+  var resp = await request({
+    url: '/qa/judge_test_type/?qadf=' + id,
+    method: 'get'
+  })
+  return resp;
+}

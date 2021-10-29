@@ -54,6 +54,7 @@ import store from '@/store';
 import ProjectItemGroup from '@/views/dataquery/components/ProjectItemGroup';
 import { getWorkingOrganization, getWorkingProject } from '@/api/common';
 export default {
+  name: 'ProjectQuery',
   components: {
     ProjectItemGroup
   },

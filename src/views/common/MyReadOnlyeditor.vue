@@ -6,7 +6,6 @@
           <div
             v-for="(item, index) in proofs"
             :key="item.id"
-            style="margin-right:40px; margin-left:20px"
           >
             <el-collapse-item :title="item.user_date_tag" :name="index">
               <ckeditor

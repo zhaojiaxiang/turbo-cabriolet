@@ -205,7 +205,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/qa/components/QaMclTestIndex'),
         name: 'QAMclTestList',
-        meta: { title: 'QA-列表', icon: '', noCache: true }
+        meta: { title: 'QA-列表', icon: '', noCache: false }
       }
     ]
   },
@@ -218,7 +218,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/common/QaContentText'),
         name: 'QaContentText',
-        meta: { title: '贴图', icon: '', noCache: false }
+        meta: { title: '贴图', icon: '', noCache: true }
       }
     ]
   },
@@ -270,7 +270,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/workbench/components/TaskPclTestList'),
         name: 'TaskPclTestList',
-        meta: { title: '分类2-列表', icon: '', noCache: true }
+        meta: { title: '分类2-列表', icon: '', noCache: false }
       }
     ]
   },

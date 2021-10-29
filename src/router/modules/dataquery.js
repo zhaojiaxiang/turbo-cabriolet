@@ -16,19 +16,19 @@ const queryRouter = {
       path: 'projects',
       name: 'ProjectQuery',
       component: () => import('@/views/dataquery/components/ProjectQuery'),
-      meta: { title: '项目查询' }
+      meta: { title: '项目查询', noCache: false }
     },
     {
       path: 'slip_no',
       name: 'SlipNoQuery',
       component: () => import('@/views/dataquery/components/SlipNoQuery'),
-      meta: { title: '联络票查询' }
+      meta: { title: '联络票查询', noCache: false }
     },
     {
       path: 'report',
       name: 'Report',
       component: () => import('@/views/dataquery/components/ReportQuery'),
-      meta: { title: '报表导出' }
+      meta: { title: '报表导出', noCache: false }
     }
   ]
 };

@@ -33,6 +33,7 @@
 <script>
 import SlipNoQueryResult from '@/views/dataquery/components/SlipNoQueryResult';
 export default {
+  name: 'SlipNoQuery',
   components: {
     SlipNoQueryResult
   },

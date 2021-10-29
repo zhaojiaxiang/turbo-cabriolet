@@ -27,6 +27,7 @@
 <script>
 import ReportQueryDetail from '@/views/dataquery/components/ReportQueryDetail'
 export default {
+  name: 'Report',
   components: {
     ReportQueryDetail
   },
