@@ -15,6 +15,7 @@
       style="margin-top:10px"
     >
       <el-table-column label="序号" type="index" width="50" />
+      <el-table-column prop="fsortrule" label="排序号" width="70" />
       <el-table-column
         prop="fclass1"
         label="分类1"
@@ -82,15 +83,19 @@
     <el-backtop target=".goTop" :bottom="100">
       <i class="el-icon-caret-top" />
     </el-backtop>
+
+    <DialogQAContentText ref="DialogQAContentText" />
   </div>
 </template>
 
 <script>
 import { getQaDetailByQaHead } from '@/api/qa'
 import QaMclTargetActual from '@/views/qa/components/QaMclTargetActual';
+import DialogQAContentText from '@/views/common/DialogQAContentText';
 export default {
   components: {
-    QaMclTargetActual
+    QaMclTargetActual,
+    DialogQAContentText
   },
   data() {
     return {
@@ -115,10 +120,11 @@ export default {
       }
     },
     handleContentText(id) {
-      this.$router.push({
-        name: 'QaContentText',
-        query: { type: 'display', qadf_id: id }
-      });
+      // this.$router.push({
+      //   name: 'QaContentText',
+      //   query: { type: 'display', qadf_id: id }
+      // });
+      this.$refs.DialogQAContentText.handleDialog(id, 'display')
     },
 
     filterResult(value, row) {

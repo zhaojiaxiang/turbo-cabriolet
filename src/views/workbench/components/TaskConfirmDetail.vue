@@ -44,6 +44,7 @@
       class="card-shadow"
     >
       <el-table-column label="序号" type="index" width="50" />
+      <el-table-column prop="fsortrule" label="排序号" width="70" />
       <el-table-column
         prop="fclass1"
         label="分类1"
@@ -107,6 +108,7 @@
     <el-backtop target=".goTop" :bottom="100">
       <i class="el-icon-caret-top" />
     </el-backtop>
+    <DialogQAContentText ref="DialogQAContentText" />
   </div>
 </template>
 
@@ -117,12 +119,14 @@ import store from '@/store';
 import QaMclTargetActual from '@/views/qa/components/QaMclTargetActual';
 import QaPclTargetActual from '@/views/qa/components/QaPclTargetActual';
 import QaCodeReview from '@/views/qa/components/QaCodeReview';
+import DialogQAContentText from '@/views/common/DialogQAContentText';
 export default {
   components: {
     TaskConfirmResult,
     QaMclTargetActual,
     QaPclTargetActual,
-    QaCodeReview
+    QaCodeReview,
+    DialogQAContentText
   },
   data() {
     return {
@@ -203,10 +207,11 @@ export default {
     },
 
     handleContentText(id) {
-      this.$router.push({
-        name: 'QaContentText',
-        query: { type: 'approval', qadf_id: id }
-      });
+      // this.$router.push({
+      //   name: 'QaContentText',
+      //   query: { type: 'approval', qadf_id: id }
+      // });
+      this.$refs.DialogQAContentText.handleDialog(id, 'approval')
     },
 
     async resultRollback() {
