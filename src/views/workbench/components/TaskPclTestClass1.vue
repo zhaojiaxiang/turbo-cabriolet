@@ -209,6 +209,8 @@ export default {
       if (resp.result === 'OK') {
         this.$message.success('测试结果提交成功');
         this.refreshQaList();
+      } else {
+        this.qahead.fstatus = '2';
       }
     },
 
@@ -220,6 +222,8 @@ export default {
       if (resp.result === 'OK') {
         this.$message.success('测试结果撤回成功');
         this.refreshQaList();
+      } else {
+        this.qahead.fstatus = '3';
       }
     },
 

@@ -27,8 +27,8 @@ import {
   getQaDetailContentText,
   updateQaDetailContentText,
   getQadetailProofContentText,
-  approvalQaDetailContentText,
-  judgeTestType
+  approvalQaDetailContentText
+  // judgeTestType
 } from '@/api/qa';
 export default {
   name: 'QaContentText',
@@ -116,23 +116,26 @@ export default {
 
       if (resp.result === 'OK') {
         this.$message.success('测试贴图提交成功');
-        window.history.go(-1);
-        var resp_type = await judgeTestType(this.qadf.id);
-        if (resp_type.result === 'OK') {
-          var qahf_id = resp_type.data.id;
-          var testType = resp_type.data.type;
-          if (testType === 'MCL') {
-            await store.dispatch(
-              'qa/refreshQaDetailByQaHeadViaPagination',
-              qahf_id
-            );
-          } else {
-            var class1 = resp_type.data.class1;
-            var class2 = resp_type.data.class2;
-            var args = { id: qahf_id, class1: class1, class2: class2 };
-            await store.dispatch('qa/refreshPclListViaClass', args);
-          }
-        }
+        var qahf_id = this.$route.query.qahf_id;
+        await store.dispatch('workbench/getMyConfirmDetail', qahf_id)
+        this.dialogFormVisible = !this.dialogFormVisible;
+        // window.history.go(-1);
+        // var resp_type = await judgeTestType(this.qadf.id);
+        // if (resp_type.result === 'OK') {
+        //   var qahf_id = resp_type.data.id;
+        //   var testType = resp_type.data.type;
+        //   if (testType === 'MCL') {
+        //     await store.dispatch(
+        //       'qa/refreshQaDetailByQaHeadViaPagination',
+        //       qahf_id
+        //     );
+        //   } else {
+        //     var class1 = resp_type.data.class1;
+        //     var class2 = resp_type.data.class2;
+        //     var args = { id: qahf_id, class1: class1, class2: class2 };
+        //     await store.dispatch('qa/refreshPclListViaClass', args);
+        //   }
+        // }
       }
     },
 

@@ -17,6 +17,7 @@ import {
   getMyRelease,
   getMyConfirm
 } from '@/api/workbench';
+import { getQaDetailByQaHead } from '@/api/qa';
 import store from '..';
 
 const state = {
@@ -32,6 +33,7 @@ const state = {
   task_test_pcl: [],
   task_approval: [],
   task_confirm: [],
+  task_confirm_detail: [],
   task_release: []
 };
 
@@ -121,6 +123,21 @@ const mutations = {
   },
   SET_TASK_CONFIRM(state, data) {
     state.task_confirm = data
+  },
+  SET_CONFIRM_DETAIL(state, data) {
+    for (var i in data) {
+      if (data[i].fregression === 'Y') {
+        data[i].fregression = '是';
+      } else {
+        data[i].fregression = '否';
+      }
+      if (data[i].fapproval === 'Y') {
+        data[i].fapproval = '已审核';
+      } else {
+        data[i].fapproval = '未审核';
+      }
+    }
+    state.task_confirm_detail = data
   },
   SET_TASK_RELEASE(state, data) {
     state.task_release = data
@@ -304,6 +321,17 @@ const actions = {
       })
     })
   },
+
+  getMyConfirmDetail({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      getQaDetailByQaHead(id).then(response => {
+        const { data } = response
+        commit('SET_CONFIRM_DETAIL', data)
+        resolve(response)
+      })
+    })
+  },
+
   getMyRelease({ commit }) {
     return new Promise((resolve, reject) => {
       getMyRelease().then(response => {

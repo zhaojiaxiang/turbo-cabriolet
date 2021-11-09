@@ -41,6 +41,7 @@ const getters = {
   task_test_pcl: state => state.workbench.task_test_pcl,
   task_approval: state => state.workbench.task_approval,
   task_confirm: state => state.workbench.task_confirm,
+  task_confirm_detail: state => state.workbench.task_confirm_detail,
   task_release: state => state.workbench.task_release,
   // project
   project_mcl_list: state => state.projects.project_mcl_list,

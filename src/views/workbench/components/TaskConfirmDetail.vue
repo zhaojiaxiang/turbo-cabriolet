@@ -37,7 +37,7 @@
     </el-row>
     <el-table
       v-loading="loading"
-      :data="qadetails"
+      :data="task_confirm_detail"
       tooltip-effect="dark"
       border
       size="medium"
@@ -61,7 +61,7 @@
       />
       <el-table-column prop="fregression" label="回归？" width="70">
         <template slot-scope="scope">
-          <el-tag :type="regressionTag" disable-transitions>{{
+          <el-tag type="info" disable-transitions>{{
             scope.row.fregression
           }}</el-tag>
         </template>
@@ -113,13 +113,14 @@
 </template>
 
 <script>
-import { getQaDetailByQaHead, updateQaHead } from '@/api/qa';
+import { updateQaHead } from '@/api/qa';
 import TaskConfirmResult from './TaskConfirmResult';
 import store from '@/store';
 import QaMclTargetActual from '@/views/qa/components/QaMclTargetActual';
 import QaPclTargetActual from '@/views/qa/components/QaPclTargetActual';
 import QaCodeReview from '@/views/qa/components/QaCodeReview';
 import DialogQAContentText from '@/views/common/DialogQAContentText';
+import { mapGetters } from 'vuex';
 export default {
   components: {
     TaskConfirmResult,
@@ -135,6 +136,9 @@ export default {
       qahead: {},
       qadetails: []
     };
+  },
+  computed: {
+    ...mapGetters(['task_confirm_detail'])
   },
   mounted: async function() {
     this.loading = true;
@@ -257,27 +261,28 @@ export default {
     },
 
     async refreshQaList() {
-      var resp = await getQaDetailByQaHead(this.qaheadId);
-      if (resp.result === 'OK') {
-        var qadata = resp.data;
-        for (var i in qadata) {
-          if (qadata[i].fregression === 'Y') {
-            qadata[i].fregression = '是';
-            this.regressionTag = '';
-          } else {
-            qadata[i].fregression = '否';
-            this.regressionTag = 'info';
-          }
-          if (qadata[i].fapproval === 'Y') {
-            qadata[i].fapproval = '已审核';
-            this.approvalTag = '';
-          } else {
-            qadata[i].fapproval = '未审核';
-            this.approvalTag = 'info';
-          }
-        }
-        this.qadetails = resp.data;
-      }
+      await store.dispatch('workbench/getMyConfirmDetail', this.qaheadId)
+      // var resp = await getQaDetailByQaHead(this.qaheadId);
+      // if (resp.result === 'OK') {
+      //   var qadata = resp.data;
+      //   for (var i in qadata) {
+      //     if (qadata[i].fregression === 'Y') {
+      //       qadata[i].fregression = '是';
+      //       this.regressionTag = '';
+      //     } else {
+      //       qadata[i].fregression = '否';
+      //       this.regressionTag = 'info';
+      //     }
+      //     if (qadata[i].fapproval === 'Y') {
+      //       qadata[i].fapproval = '已审核';
+      //       this.approvalTag = '';
+      //     } else {
+      //       qadata[i].fapproval = '未审核';
+      //       this.approvalTag = 'info';
+      //     }
+      //   }
+      //   this.qadetails = resp.data;
+      // }
     }
   }
 };
