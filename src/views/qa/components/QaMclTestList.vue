@@ -181,12 +181,14 @@
     <QaSingleModify ref="QaSingleModify" />
     <QaBatchNew ref="QaBatchNew" />
     <QaModifyDetail ref="QaModifyDetail" />
+    <DialogQAContentText ref="DialogQAContentText" />
   </div>
 </template>
 
 <script>
 import store from '@/store';
 import { mapGetters } from 'vuex';
+import DialogQAContentText from '@/views/common/DialogQAContentText';
 import QaMclTargetActual from './QaMclTargetActual';
 import QaSingleNew from './QaSingleNew';
 import QaSingleModify from './QaSingleModify';
@@ -198,7 +200,8 @@ export default {
     QaSingleNew,
     QaSingleModify,
     QaBatchNew,
-    QaModifyDetail
+    QaModifyDetail,
+    DialogQAContentText
   },
   data() {
     return {
@@ -341,10 +344,11 @@ export default {
     },
 
     handleContentText(id) {
-      this.$router.push({
-        name: 'QaContentText',
-        query: { type: 'test', qadf_id: id }
-      });
+      // this.$router.push({
+      //   name: 'QaContentText',
+      //   query: { type: 'test', qadf_id: id }
+      // });
+      this.$refs.DialogQAContentText.handleDialog(id, 'test')
     },
 
     async batchDeleteQaDetail() {

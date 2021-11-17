@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .workbench-editor-container {
-  padding: 4px 32px 4px 32px;
+  padding: 4px 14px 4px 14px;
   position: relative;
 }
 

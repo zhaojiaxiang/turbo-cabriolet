@@ -205,7 +205,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/qa/components/QaMclTestIndex'),
         name: 'QAMclTestList',
-        meta: { title: 'QA-列表', icon: '', noCache: false }
+        meta: { title: 'QA-列表', icon: '', noCache: true }
       }
     ]
   },

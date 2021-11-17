@@ -153,6 +153,7 @@
     <QaSingleNewForPcl ref="QaSingleNewForPcl" />
     <QaBatchNewForPcl ref="QaBatchNewForPcl" />
     <QaSingleModifyForPcl ref="QaSingleModifyForPcl" />
+    <DialogQAContentText ref="DialogQAContentText" />
   </div>
 </template>
 
@@ -161,6 +162,7 @@ import QaPclTargetActual from '@/views/qa/components/QaPclTargetActual';
 import QaSingleNewForPcl from '@/views/qa/components/QaSingleNewForPcl';
 import QaBatchNewForPcl from '@/views/qa/components/QaBatchNewForPcl';
 import QaSingleModifyForPcl from '@/views/qa/components/QaSingleModifyForPcl';
+import DialogQAContentText from '@/views/common/DialogQAContentText';
 import store from '@/store';
 import { mapGetters } from 'vuex';
 export default {
@@ -169,7 +171,8 @@ export default {
     QaPclTargetActual,
     QaSingleNewForPcl,
     QaBatchNewForPcl,
-    QaSingleModifyForPcl
+    QaSingleModifyForPcl,
+    DialogQAContentText
   },
   data() {
     return {
@@ -290,10 +293,11 @@ export default {
     },
 
     handleContentText(id) {
-      this.$router.push({
-        name: 'QaContentText',
-        query: { type: 'test', qadf_id: id }
-      });
+      // this.$router.push({
+      //   name: 'QaContentText',
+      //   query: { type: 'test', qadf_id: id }
+      // });
+      this.$refs.DialogQAContentText.handleDialog(id, 'test')
     },
 
     filterResult(value, row) {
