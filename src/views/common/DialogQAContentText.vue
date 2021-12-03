@@ -3,7 +3,7 @@
     title="贴图"
     :visible.sync="dialogFormVisible"
     :close-on-click-modal="false"
-    width="70%"
+    width="95%"
   >
     <div class="div-container">
       <h3>{{ qadf.fsortrule }}. {{ qadf.fcontent }}</h3>

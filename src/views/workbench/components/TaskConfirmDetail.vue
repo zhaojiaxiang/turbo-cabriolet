@@ -94,7 +94,7 @@
         <template slot-scope="scope">
           <el-link
             v-show="isCanImage(scope.row.test_tag)"
-            type="primary"
+            :type="linkType(scope.row.id)"
             :underline="false"
             style="margin-left:15px"
             @click="handleContentText(scope.row.id)"
@@ -134,7 +134,8 @@ export default {
       loading: false,
       qaheadId: '',
       qahead: {},
-      qadetails: []
+      qadetails: [],
+      history: []
     };
   },
   computed: {
@@ -186,6 +187,14 @@ export default {
       this.refreshQaList();
     },
 
+    linkType(id) {
+      if (this.history.indexOf(id) > 0) {
+        return 'info'
+      } else {
+        return 'primary'
+      }
+    },
+
     async resultRollbackConfirm() {
       this.$confirm('此操作将撤回确认结果, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -211,10 +220,7 @@ export default {
     },
 
     handleContentText(id) {
-      // this.$router.push({
-      //   name: 'QaContentText',
-      //   query: { type: 'approval', qadf_id: id }
-      // });
+      this.history.push(id)
       this.$refs.DialogQAContentText.handleDialog(id, 'approval')
     },
 
