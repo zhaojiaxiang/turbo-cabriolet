@@ -188,7 +188,7 @@ export default {
     },
 
     linkType(id) {
-      if (this.history.indexOf(id) > 0) {
+      if (this.history.indexOf(id) > -1) {
         return 'info'
       } else {
         return 'primary'

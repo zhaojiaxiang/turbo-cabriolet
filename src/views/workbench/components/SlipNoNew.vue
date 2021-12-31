@@ -373,6 +373,12 @@ export default {
             this.form.fplnstart = val.fplnend;
           }
         }
+        if (val.fodrno || val.fslipno) {
+          if (val.fslipno === val.fodrno) {
+            this.$alert('联络票号和订单号不可相同');
+            val.fslipno = ''
+          }
+        }
       },
       deep: true
     }

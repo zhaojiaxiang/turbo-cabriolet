@@ -195,6 +195,7 @@ export default {
               this.dialogEdit = false;
             }
           }
+          this.$emit('refreshCheckoutList')
         }
       });
     },

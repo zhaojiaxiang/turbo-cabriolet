@@ -106,14 +106,14 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" width="80" fixed="right">
+      <el-table-column label="操作" width="100" fixed="right">
         <template slot-scope="scope">
           <el-link
             style="margin-left:10px"
             type="primary"
             :underline="false"
             @click="openConfirmDetail(scope.row.qahf_id)"
-          >确认</el-link>
+          >测试明细</el-link>
         </template>
       </el-table-column>
     </el-table>

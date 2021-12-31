@@ -447,6 +447,19 @@ export default {
   computed: {
     ...mapGetters(['systems', 'projects', 'group_users', 'all_group_users'])
   },
+  watch: {
+    form: {
+      handler(val) {
+        if (val.fodrno || val.fslipno) {
+          if (val.fslipno === val.fodrno) {
+            this.$alert('联络票号和订单号不可相同');
+            val.fslipno = ''
+          }
+        }
+      },
+      deep: true
+    }
+  },
   mounted: function() {
     this.loading = true;
     var this_ = this;
