@@ -57,7 +57,8 @@ module.exports = {
       }
     }
   },
-
+  // 解决CK5在编译时瞎几把乱报错的问题
+  parallel: false,
   transpileDependencies: [/ckeditor5-[^/\\]+[/\\]src[/\\].+\.js$/],
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

@@ -187,14 +187,14 @@ export default {
     this.fullscreenLoading = true;
     this.slip_no = this.$route.query.slipno;
     var resp_liaison = await getReportLiaisonInfo(this.slip_no)
-
-    if (resp_liaison.data && JSON.stringify(resp_liaison.data) !== '{}') {
-      this.liaisonData = resp_liaison.data;
-    } else {
-      this.title = '结合测试计划书';
-      this.liaison_show = false;
+    if (resp_liaison.data) {
+      if (resp_liaison.data.length > 0) {
+        this.liaisonData = resp_liaison.data;
+      } else {
+        this.title = '结合测试计划书';
+        this.liaison_show = false;
+      }
     }
-
     var resp_qa = await getReportQaInfo(this.slip_no)
     this.qaData = resp_qa.data;
     this.fullscreenLoading = false;
