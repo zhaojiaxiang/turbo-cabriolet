@@ -44,6 +44,7 @@ export default {
   },
   mounted() {
     this.$el.addEventListener('paste', event => {
+      debugger;
       event.stopPropagation();
       event.preventDefault(); // 消除默认粘贴
 
@@ -53,7 +54,7 @@ export default {
       var pastedData = clipboardData.getData('Text');
 
       this.qadetails = pastedData
-        .split('\n')
+        .split('\r\n')
         .filter(function(item) {
           // 兼容Excel行末\n，防止出现多余空行
           return item !== '';
@@ -100,9 +101,9 @@ export default {
 
         var form = {};
         form['fregression'] = 'N';
-        form['fclass1'] = this.qadetails[i][0];
-        form['fclass2'] = this.qadetails[i][1];
-        form['fcontent'] = this.qadetails[i][2];
+        form['fclass1'] = this.qadetails[i][0].replace(/\"/g, '');
+        form['fclass2'] = this.qadetails[i][1].replace(/\"/g, '');
+        form['fcontent'] = this.qadetails[i][2].replace(/\"/g, '');
         form['fsortrule'] = this.qadetails[i][3];
         form['qahf'] = this.qaheadid;
         batch_data.push(form);

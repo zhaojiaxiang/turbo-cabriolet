@@ -49,7 +49,7 @@ export default {
       var pastedData = clipboardData.getData('Text');
 
       this.qadetails = pastedData
-        .split('\n')
+        .split('\r\n')
         .filter(function(item) {
           // 兼容Excel行末\n，防止出现多余空行
           return item !== '';
@@ -96,8 +96,8 @@ export default {
 
         var form = {};
         form['fregression'] = this.qadetails[i][0];
-        form['fcontent'] = this.qadetails[i][1];
-        form['fclass1'] = this.qadetails[i][2];
+        form['fcontent'] = this.qadetails[i][1].replace(/\"/g, '');
+        form['fclass1'] = this.qadetails[i][2].replace(/\"/g, '');
         form['fclass2'] = '';
         form['fsortrule'] = this.qadetails[i][3];
         form['qahf'] = this.qaheadid;

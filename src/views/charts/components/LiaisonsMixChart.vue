@@ -109,8 +109,6 @@ export default {
             color: '#90979c'
           },
           data: ['追加开发', '改善需求', '维护阶段障碍', '总数']
-          // 老板不想让日本人看到bug数量
-          // data: ['追加开发', '改善需求', '总数']
         },
         calculable: true,
         xAxis: [
@@ -226,25 +224,25 @@ export default {
             },
             data: this.liaisons.req
           },
-          // {
-          //   name: '维护阶段障碍',
-          //   type: 'bar',
-          //   stack: 'total',
-          //   itemStyle: {
-          //     normal: {
-          //       color: 'rgb(242, 109, 144)',
-          //       barBorderRadius: 0,
-          //       label: {
-          //         show: true,
-          //         position: 'top',
-          //         formatter(p) {
-          //           return p.value > 0 ? p.value : '';
-          //         }
-          //       }
-          //     }
-          //   },
-          //   data: this.liaisons.bug
-          // },
+          {
+            name: '维护阶段障碍',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+              normal: {
+                color: 'rgb(242, 109, 144)',
+                barBorderRadius: 0,
+                label: {
+                  show: true,
+                  position: 'top',
+                  formatter(p) {
+                    return p.value > 0 ? p.value : '';
+                  }
+                }
+              }
+            },
+            data: this.liaisons.bug
+          },
           {
             name: '总数',
             type: 'line',

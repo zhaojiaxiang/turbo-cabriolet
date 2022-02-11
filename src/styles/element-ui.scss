@@ -116,3 +116,12 @@
 .el-table__fixed-left {
   height: 100% !important;
 }
+
+.el-table .cell {
+  white-space: pre-line;
+}
+
+.el-table .cell.el-tooltip {
+  white-space: pre-line;
+  min-width: 50px;
+}
