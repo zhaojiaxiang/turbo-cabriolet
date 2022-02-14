@@ -8,6 +8,8 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
+var timeStamp = new Date().getTime();
+
 const name = defaultSettings.title || 'AMMIC'; // page title
 
 // If your port is set to 80,
@@ -28,6 +30,7 @@ module.exports = {
    */
   publicPath: '/',
   outputDir: 'dist',
+  filenameHashing: false, // 打包的时候不使用hash值.因为我们有时间戳来确定项目的唯一性了.
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
@@ -70,6 +73,10 @@ module.exports = {
         '@': resolve('src')
       }
     },
+    output: { // 输出重构 打包编译后的js文件名称,添加时间戳.
+      filename: `js/js[name].${timeStamp}.js`,
+      chunkFilename: `js/chunk.[id].${timeStamp}.js`
+    },
     plugins: [
       // CKEditor needs its own plugin to be built using webpack.
       new CKEditorWebpackPlugin({
@@ -80,6 +87,12 @@ module.exports = {
         translationsOutputFile: /app/
       })
     ]
+  },
+  css: {
+    extract: { // 打包后css文件名称添加时间戳
+      filename: `css/[name].${timeStamp}.css`,
+      chunkFilename: `css/chunk.[id].${timeStamp}.css`
+    }
   },
   chainWebpack(config) {
     // (1.) To handle editor icons, get the default rule for *.svg files first:
