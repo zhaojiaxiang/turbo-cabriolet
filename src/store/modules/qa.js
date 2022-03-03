@@ -227,7 +227,9 @@ const actions = {
           commit('SET_QA_MCL_LIST', results)
           commit('SET_PAGE_COUNT', pages)
           commit('SET_COUNT', count)
-          store.dispatch('qa/refreshMclTargetActual', id)
+          if (id) {
+            store.dispatch('qa/refreshMclTargetActual', id)
+          }
           resolve(response)
         })
         .catch(error => {
@@ -257,8 +259,10 @@ const actions = {
   newQaDetail({ count }, data) {
     return new Promise((resolve, reject) => {
       newQaDetail(data).then(response => {
-        const { data } = response
-        store.dispatch('qa/getQaDetailByQaHeadViaPagination', data.qahf)
+        const { result, data } = response
+        if (result === 'OK') {
+          store.dispatch('qa/getQaDetailByQaHeadViaPagination', data.qahf)
+        }
         resolve(response)
       }).catch(error => {
         reject(error)

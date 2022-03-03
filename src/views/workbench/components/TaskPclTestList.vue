@@ -68,6 +68,7 @@
     >
       <el-table-column type="selection" width="40" />
       <el-table-column label="序号" type="index" width="50" />
+      <el-table-column prop="fsortrule" sortable label="排序" width="80" />
       <el-table-column prop="fapproval" sortable label="状态" width="80" />
       <el-table-column prop="fcontent" label="测试用例" show-overflow-tooltip />
       <el-table-column prop="ftestdte" label="测试日" width="100" />
