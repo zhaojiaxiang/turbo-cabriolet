@@ -219,7 +219,7 @@ export default {
       return row.ftype === value;
     },
 
-    canOpenReport() {
+    canOpenReport(status) {
       if (status === '已完成') {
         return true;
       } else if (status === '已发布') {

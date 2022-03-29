@@ -29,7 +29,7 @@
         prop="fclass2"
         sortable
         label="分类2"
-        width="400"
+        min-width="350"
         show-overflow-tooltip
       >
         <template slot-scope="scope">
@@ -40,10 +40,11 @@
           >{{ scope.row.fclass2 }}</el-link>
         </template>
       </el-table-column>
-      <el-table-column prop="test_cnt" label="测试用例数量" width="150" />
-      <el-table-column prop="tested_cnt" label="已经测试数量" width="150" />
-      <el-table-column prop="ng" label="未处理NG数量" width="150" />
-      <el-table-column prop="canceled_cnt" label="取消数量" width="150" />
+      <el-table-column prop="test_cnt" label="测试用例数量" min-width="110" />
+      <el-table-column prop="tested_cnt" label="已经测试数量" min-width="110" />
+      <el-table-column prop="ng" label="未处理NG数量" min-width="120" />
+      <el-table-column prop="ng_cnt" label="NG数量" min-width="90" />
+      <el-table-column prop="canceled_cnt" label="取消数量" min-width="90" />
     </el-table>
 
     <el-backtop target=".goTop" :bottom="100">

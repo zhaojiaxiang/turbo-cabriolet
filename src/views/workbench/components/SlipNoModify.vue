@@ -122,7 +122,7 @@
               <el-select
                 v-model="form.fleader"
                 multiple
-                :disabled="true ? form.fstatus != '1' : form.fstatus == '1'"
+                :disabled="isDisabled(form.fstatus)"
                 placeholder="请选择负责人"
               >
                 <el-option-group
@@ -145,7 +145,7 @@
               <el-select
                 v-model="form.fhelper"
                 multiple
-                :disabled="true ? form.fstatus != '1' : form.fstatus == '1'"
+                :disabled="isDisabled(form.fstatus)"
                 placeholder="请选择项目协助者"
               >
                 <el-option-group
@@ -217,7 +217,7 @@
             <el-input
               v-model="form.fbrief"
               type="textarea"
-              :disabled="true ? form.fstatus != '1' : form.fstatus == '1'"
+              :disabled="isDisabled(form.fstatus)"
               placeholder="开发概要"
             />
           </el-form-item>
@@ -232,7 +232,7 @@
             <el-input
               v-model="form.fcontent"
               type="textarea"
-              :disabled="true ? form.fstatus != '1' : form.fstatus == '1'"
+              :disabled="isDisabled(form.fstatus)"
               placeholder="问题描述"
             />
           </el-form-item>
@@ -269,7 +269,7 @@
                 size="medium"
                 value-format="yyyy-MM-dd"
                 placeholder="计划开始日期"
-                :disabled="true ? form.fstatus != '1' : form.fstatus == '1'"
+                :disabled="isDisabled(form.fstatus)"
                 class="width-sytle"
               />
             </el-form-item>
@@ -282,7 +282,7 @@
                 size="medium"
                 value-format="yyyy-MM-dd"
                 placeholder="计划结束日期"
-                :disabled="true ? form.fstatus != '1' : form.fstatus == '1'"
+                :disabled="isDisabled(form.fstatus)"
                 class="width-sytle"
               />
             </el-form-item>
@@ -292,7 +292,7 @@
               <el-input
                 v-model="form.fplnmanpower"
                 type="number"
-                :disabled="true ? form.fstatus != '1' : form.fstatus == '1'"
+                :disabled="isDisabled(form.fstatus)"
                 placeholder="计划工时"
               />
             </el-form-item>
@@ -488,6 +488,12 @@ export default {
     this.loading = false;
   },
   methods: {
+    isDisabled(status) {
+      if (status === '1' || status === '2') {
+        return false;
+      }
+      return true;
+    },
     onSubmit(formName) {
       this.$refs[formName].validate(async valid => {
         if (valid) {
